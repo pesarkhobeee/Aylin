@@ -78,9 +78,12 @@ class users extends CI_Controller {
 		
 		if(isset($_POST["username"])){
 			
+			$_POST["password"]=md5($_POST["password"]);
 			if($this->db->insert('users', $_POST))
 				$data['massege'] = 'New User Successfully Added';
 		}
+		
+		
 		
 		if($this->uri->segment(3)!=""){
 			if($this->db->delete('users', array('id' => $this->uri->segment(4))))

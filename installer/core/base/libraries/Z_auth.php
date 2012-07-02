@@ -32,7 +32,7 @@ class Z_auth {
 			$CI->load->database();
 			$CI->db->from('users');
 			$CI->db->where('username', $username);
-			$CI->db->where('password', $password);
+			$CI->db->where('password', md5($password));
 			$query= $CI->db->get();
 			if($query->num_rows()==1){
 				
