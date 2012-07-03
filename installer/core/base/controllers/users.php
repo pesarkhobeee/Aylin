@@ -86,8 +86,9 @@ class users extends CI_Controller {
 		
 		
 		if($this->uri->segment(3)!=""){
-			if($this->db->delete('users', array('id' => $this->uri->segment(4))))
-				$data['massege'] = 'User Successfully Deleted';
+			if($this->uri->segment(3)=="duser")
+				if($this->db->delete('users', array('id' => $this->uri->segment(4))))
+					$data['massege'] = 'User Successfully Deleted';
 		}
 
 		$data['query_users'] = $this->db->get("users");

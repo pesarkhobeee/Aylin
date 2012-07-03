@@ -1,0 +1,11 @@
+
+
+
+
+
+TODO
+====================
+Add user update to users controller
+Add random password generator to user controller
+Add public user registeror to user controller
+Convert menu controller code from grocery CRUD to Active record for prevent hard code in the base

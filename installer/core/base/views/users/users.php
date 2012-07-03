@@ -20,7 +20,13 @@
 			echo("</li><li>");
 			echo form_label('Password  ', 'password');
 			echo form_input('password');
-			echo form_hidden('user_group', 'user');
+			echo("</li><li>");
+			echo form_label('User Group  ', 'user_group');
+			echo "User ";
+			echo form_radio('user_group', 'user',TRUE);
+			echo "<br>";
+			echo "Root ";
+			echo form_radio('user_group', 'root',FALSE);
 			echo("</li>");
 			echo form_close();
 		?>
