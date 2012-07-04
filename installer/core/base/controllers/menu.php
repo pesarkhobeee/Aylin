@@ -24,9 +24,9 @@ public function index(){
     
     $output = $crud->render();
     
-    	$this->load->view('header',$output);
+    	$this->load->view('admin_them/header');
     	$this->load->view('crud',$output);
-	$this->load->view('footer');
+    	$this->load->view('admin_them/footer');
 }
 
 

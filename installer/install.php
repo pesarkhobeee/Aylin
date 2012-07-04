@@ -35,6 +35,13 @@
 		import_db_file("../application/data.sql");
 		replace_in_file("Aylin",$_POST["title"],"../application/views/header.php");
 	}
+	
+	if(isset($_POST["content"])){
+		extractor("./core/sub_systems/content.zip","../application/");
+		smartCopy("../application/assets/","../assets");
+		rrmdir('../application/assets/');
+		import_db_file("../application/data.sql");
+	}
 	?>
 	
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"

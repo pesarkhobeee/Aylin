@@ -111,7 +111,15 @@
 			</tr>
 		</table>
 		</fieldset>
-	
+		<fieldset>
+		<legend>گام چهارم</legend>
+			<table class="table table-striped">
+				<tr>
+					<td><input type="checkbox" name="content" value="content"  checked="checked"/></td>
+					<td> سیستم مدیریت محتوا بهمراه CKEditor 3.6.2</td>
+				</tr>
+			</table>
+		</fieldset>
 		
 		<input type="submit" value="نصب" class="btn btn-primary" style="width:100%;"/>
 	</form>

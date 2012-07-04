@@ -41,7 +41,7 @@ class Welcome extends CI_Controller {
 		$this->load->library('Z_auth');
 		if(isset($_POST["username"])){
 				if($this->z_auth->login($_POST["username"],$_POST["password"])){
-					redirect('/menu/index', 'refresh');
+					redirect('/users/show_users', 'refresh');
 				}else{
 					$data["msg"]="Username Or Password is Wrong";
 				}
@@ -72,11 +72,11 @@ if($_POST["6_letters_code"]=="10"){
 	$content.="<br><br>".$string;
 	
         $config['protocol']    = 'smtp';
-        $config['smtp_host']    = 'mail.zanjanhost.com';
+        $config['smtp_host']    = '';
         $config['smtp_port']    = '25';
         $config['smtp_timeout'] = '7';
-        $config['smtp_user']    = 'info@zanjanhost.com';
-        $config['smtp_pass']    = 'farid@1384fe';
+        $config['smtp_user']    = '';
+        $config['smtp_pass']    = '';
         $config['charset']    = 'utf-8';
         $config['newline']    = "\r\n";
         $config['mailtype'] = 'html'; // or html
