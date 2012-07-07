@@ -52,13 +52,11 @@
 			</tr>
 			<tr>
 				<td>آدرس پایه</td>
-				<td><input type="text" name="base_url" value="
-				<?php 
+				<td><input type="text" name="base_url" value="<?php 
 					$base_url= "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-					$base_url= str_replace("installer/","",$base_url);
+					$base_url= str_replace("/installer/","",$base_url);
 					echo trim($base_url);
-				?>
-				" /></td>		
+				?>" /></td>		
 			</tr>						
 		</table>
 	</fieldset>
