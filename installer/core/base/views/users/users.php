@@ -7,7 +7,7 @@
     <div class="modal fade" id="user">
     	<div class="modal-header">
     		<a class="close" data-dismiss="modal">×</a>
-   		 <h3>Change Password</h3>
+   		 <h3>Create User</h3>
    	</div>
     	<div class="modal-body">
 
@@ -40,7 +40,35 @@
     </div>
 
 		
-		
+   <div class="modal fade" id="update">
+    	<div class="modal-header">
+    		<a class="close" data-dismiss="modal">×</a>
+   		 <h3>Change Password</h3>
+   	</div>
+    	<div class="modal-body">
+
+	<ul id="task">
+		<?php
+			echo form_open('users/show_users',array('id'=>'update_user'));
+			echo "<input type='hidden' name='userid' id='userid' />";
+			echo("<li>");
+			echo form_label('Password  ', 'password');
+			echo form_password('password');
+			echo("</li><li>");
+			echo form_label('RE Password  ', 're_password');
+			echo form_password('re_password');
+			echo("</li>");
+			echo form_close();
+		?>
+		</ul>
+
+  	</div>
+    <div class="modal-footer">
+    	 <a href="#" onclick="document.getElementById('update_user').submit()" class="btn btn-primary">Submit User</a>
+   	 <a href="#" class="btn">Close</a>
+    </div>
+    </div>
+	
 		
 		
 		<?php
@@ -55,7 +83,7 @@
 			foreach ($query_users->result() as $row)
 			{
 				echo "<tr>";
-				echo "<td>".anchor('users/show_users/duser/'.$row->id, '<i class="icon-remove"></i>', array('class' => 'btn','tooltip'=>'Delete'))."&nbsp;".anchor('users/show_users/uuser/'.$row->id, '<i class="icon-pencil"></i>', array('class' => 'btn','tooltip'=>'Update'))."&nbsp;"."</td>";
+				echo "<td>".anchor('users/show_users/duser/'.$row->id, '<i class="icon-remove"></i>', array('class' => 'btn','tooltip'=>'Delete'))."&nbsp;<a href='#update' class='btn' data-toggle='modal' onclick='document.getElementById(\"userid\").value=".$row->id."'><i class='icon-pencil' ></i></a>&nbsp;"."</td>";
 				echo "<td>".$row->username."</td>";
 				echo "<td>".$row->user_group."</td>";
 				echo "</tr>";

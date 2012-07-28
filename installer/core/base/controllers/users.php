@@ -76,6 +76,21 @@ class users extends CI_Controller {
 	function show_users(){
 		
 		
+		if(isset($_POST["re_password"]))
+		{
+			if($_POST["re_password"]==$_POST["password"])
+			{
+				$data = array(
+				   'password' => MD5($_POST["password"]),
+				);
+				$this->db->where('id', $_POST["userid"]);
+				$this->db->update('users', $data); 
+				$data['massege'] = 'Password Successfully Chenged';
+			}else{
+				$data['massege'] = 'Password and Re Pasword do not match';
+			}
+		}
+		
 		if(isset($_POST["username"])){
 			
 			$_POST["password"]=md5($_POST["password"]);

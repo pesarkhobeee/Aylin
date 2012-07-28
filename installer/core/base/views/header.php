@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Aylin</title>
+    <title><?php echo $this->aylin_config->config("title","config_site"); ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -63,7 +63,7 @@ if(isset($css_files) && isset($js_files)){
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Aylin</a>
+          <a class="brand" href="#"><?php echo $this->aylin_config->config("title","config_site"); ?></a>
           <div class="nav-collapse">
 		<?php include("menu.php"); ?>
           </div><!--/.nav-collapse -->

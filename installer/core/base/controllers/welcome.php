@@ -22,9 +22,11 @@ class Welcome extends CI_Controller {
 	public function index($pagename="Home"){
 		$this->db->where('content_title', $pagename);
 		$data["contents"]= $this->db->get('content');
-		$this->load->view('header');
-		$this->load->view('welcome/show',$data);
-		$this->load->view('footer');
+
+			$this->load->view('header');
+			$this->load->view('welcome/show',$data);
+			$this->load->view('footer');	
+		
 	}
 	
 	
@@ -57,49 +59,24 @@ class Welcome extends CI_Controller {
 
     function send_contact()
     {
-if($_POST["6_letters_code"]=="10"){
-   $content="";
-   unset($_POST["6_letters_code"]);
-   unset($_POST["submit"]);
-  foreach($_POST as $item=>$val){
-  	$content.="<fieldset>
-    <legend>$item</legend>$val</fieldset>";
-  }
-    
-    	$this->load->library('email');
-    	$this->load->helper('file');
-	$string = read_file('./assets/others/signature.html');
-	$content.="<br><br>".$string;
-	
-        $config['protocol']    = 'smtp';
-        $config['smtp_host']    = '';
-        $config['smtp_port']    = '25';
-        $config['smtp_timeout'] = '7';
-        $config['smtp_user']    = '';
-        $config['smtp_pass']    = '';
-        $config['charset']    = 'utf-8';
-        $config['newline']    = "\r\n";
-        $config['mailtype'] = 'html'; // or html
-        $config['validation'] = TRUE; // bool whether to validate email or not      
 
-        $this->email->initialize($config);
-
-        $this->email->from('info@zanjanhost.com', 'Contactus of zanjanhost.com');
-        $this->email->to('info@zanjanhost.com'); 
-
-        $this->email->subject('ContactUs');
-        $this->email->message($content);  
-
-        $this->email->send();
-
-       //echo $this->email->print_debugger();
-       $data["msg"]="کاربر گرامی پیغام شما با موفقیت ارسال گردید";
-	}else{
-	$data["msg"]="شما پاسخ اشتباه به سوال امنیتی داده اید. خواهشا دوباره سعی کنید";
-	}
-	
-
-	
+		if($_POST["6_letters_code"]=="10")
+		{
+			$content="";
+			unset($_POST["6_letters_code"]);
+			unset($_POST["submit"]);
+			foreach($_POST as $item=>$val)
+			{
+				$content.="<fieldset>
+				<legend>$item</legend>$val</fieldset>";
+			}
+			$data["msg"]="کاربر گرامی پیغام شما با موفقیت ارسال گردید";
+		}
+		else
+		{
+			$data["msg"]="شما پاسخ اشتباه به سوال امنیتی داده اید. خواهشا دوباره سعی کنید";
+		}
+		
 		$this->load->view('header');
 		 $this->load->view('contactus',$data);
 		$this->load->view('footer');

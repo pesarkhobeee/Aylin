@@ -57,7 +57,27 @@
 					$base_url= str_replace("/installer/","",$base_url);
 					echo trim($base_url);
 				?>" /></td>		
-			</tr>						
+			</tr>
+			<tr>
+				<td>smtp Host</td>
+				<td><input type="text" name="smtp_host" /></td>		
+			</tr>
+			<tr>
+				<td>smtp Port</td>
+				<td><input type="text" name="smtp_port" value="25" /></td>		
+			</tr>
+			<tr>
+				<td>smtp username</td>
+				<td><input type="text" name="smtp_user" /></td>		
+			</tr>
+			<tr>
+				<td>smtp Password</td>
+				<td><input type="text" name="smtp_pass" /></td>		
+			</tr>
+			<tr>
+				<td>smtp Defualt Emil Address</td>
+				<td><input type="text" name="smtp_mail" /></td>		
+			</tr>					
 		</table>
 	</fieldset>
 	<fieldset>

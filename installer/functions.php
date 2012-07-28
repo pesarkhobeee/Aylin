@@ -123,6 +123,55 @@ function import_db_file($sql_file_adress){
 	$qr = $db->exec($sql);
 }
 
+ 
+function auto_generate_insert($table_name,$source,$eskape=null)
+{
+ 
+    $pdo_driver=$_POST["db_driver"];
+	$dbhost=$_POST["db_host"];
+	$dbname=$_POST["db_name"];
+	$dsn="$pdo_driver:host=$dbhost;dbname=$dbname";
+	$user=$_POST["db_username"];
+	$password=$_POST["db_password"];
+	$db = new PDO($dsn, $user, $password);
+	$db->exec("SET NAMES 'utf8';");
+            
+            $column="";
+            $columnvalue="";
+ 
+            foreach($source as $item=>$value){
+                                if(isset($eskape))
+                                        if(in_array($item,$eskape))
+                                                continue;
+                                if(!is_array($value)){
+                                        $column.="`".$item."`,";
+                                        $columnvalue.="'".$value."',";
+                                        }else{
+                                                foreach($value as $tmp){
+                                                        $value2.=$tmp.",";
+                                                }
+                                        $column.="`".$item."`,";
+                                        $columnvalue.="'".$value2."',";
+                                        $value2="";
+                                                }
+                                }
+                        $column=substr($column,0,strlen($column)-1);
+ 
+            $columnvalue = substr($columnvalue,0,strlen($columnvalue)-1);
+            $sql = "INSERT INTO $table_name ($column) VALUES ($columnvalue) ";
+           
+            if($db->query($sql))
+                                return true;
+                        else
+                                return false;
+}
+                                
+
+
+
+
+
+
 
 function replace_in_file($search_str,$replace_str,$file_address){
 	// read the file

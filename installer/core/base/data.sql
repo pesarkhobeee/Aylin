@@ -7,7 +7,8 @@ INSERT INTO `meta_data` (`id`, `name`, `value`, `group`) VALUES
 (2, 'welcome', 'user', 'acl'),
 (3, 'users', 'root', 'acl'),
 (4, 'domain', 'user', 'acl'),
-(5, 'menu', 'root', 'acl');
+(5, 'menu', 'root', 'acl'),
+(6, 'aylin', 'root', 'acl');
 
 
 --
@@ -16,7 +17,8 @@ INSERT INTO `meta_data` (`id`, `name`, `value`, `group`) VALUES
 
 INSERT INTO `menu` (`menu_id`, `menu_name`, `menu_url`, `menu_section`) VALUES
 (1, 'کاربران', 'users/show_users', 'admin'),
-(2, 'منوها', 'menu/index', 'admin');
+(2, 'منوها', 'menu/index', 'admin'),
+(3, 'تنظیمات', 'aylin/config', 'admin');
 
 --
 -- Dumping data for table `content`

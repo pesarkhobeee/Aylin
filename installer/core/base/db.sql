@@ -81,11 +81,11 @@ CREATE TABLE IF NOT EXISTS `menu` (
 
 CREATE TABLE IF NOT EXISTS `meta_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL,
-  `value` varchar(50) DEFAULT NULL,
-  `group` varchar(50) DEFAULT NULL,
+  `name` varchar(50)  COLLATE utf8_persian_ci  DEFAULT NULL,
+  `value` varchar(50)  COLLATE utf8_persian_ci  DEFAULT NULL,
+  `group` varchar(50)  COLLATE utf8_persian_ci  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci  AUTO_INCREMENT=33 ;
 
 -- --------------------------------------------------------
 

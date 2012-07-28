@@ -33,7 +33,20 @@
 		rrmdir('../application/assets/');
 		import_db_file("../application/db.sql");
 		import_db_file("../application/data.sql");
-		replace_in_file("Aylin",$_POST["title"],"../application/views/header.php");
+		replace_in_file("['libraries'] = array('database', 'session');","['libraries'] = array('database', 'session','aylin_config');","../application/config/autoload.php");
+		//replace_in_file("Aylin",$_POST["title"],"../application/views/header.php"
+		$db_data=array("name"=>"title","value"=>$_POST["title"],"group"=>"config_site");
+		auto_generate_insert("meta_data",$db_data);
+		$db_data=array("name"=>"smtp_host","value"=>$_POST["smtp_host"],"group"=>"config_mail");
+		auto_generate_insert("meta_data",$db_data);
+		$db_data=array("name"=>"smtp_port","value"=>$_POST["smtp_port"],"group"=>"config_mail");
+		auto_generate_insert("meta_data",$db_data);
+		$db_data=array("name"=>"smtp_user","value"=>$_POST["smtp_user"],"group"=>"config_mail");
+		auto_generate_insert("meta_data",$db_data);
+		$db_data=array("name"=>"smtp_pass","value"=>$_POST["smtp_pass"],"group"=>"config_mail");
+		auto_generate_insert("meta_data",$db_data);
+		$db_data=array("name"=>"smtp_mail","value"=>$_POST["smtp_mail"],"group"=>"config_mail");
+		auto_generate_insert("meta_data",$db_data);
 	}
 	
 	if(isset($_POST["content"])){
