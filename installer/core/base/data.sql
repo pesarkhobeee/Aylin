@@ -15,10 +15,10 @@ INSERT INTO `meta_data` (`id`, `name`, `value`, `group`) VALUES
 -- Dumping data for table `menu`
 --
 
-INSERT INTO `menu` (`menu_id`, `menu_name`, `menu_url`, `menu_section`) VALUES
-(1, 'کاربران', 'users/show_users', 'admin'),
-(2, 'منوها', 'menu/index', 'admin'),
-(3, 'تنظیمات', 'aylin/config', 'admin');
+INSERT INTO `menu` (`menu_id`, `menu_name`, `menu_url`, `menu_section`, `parent`) VALUES
+(1, 'کاربران', 'users/show_users', 'admin', NULL),
+(2, 'منوها', 'menu/index', 'admin', NULL),
+(3, 'تنظیمات', 'aylin/config', 'admin', NULL);
 
 --
 -- Dumping data for table `content`

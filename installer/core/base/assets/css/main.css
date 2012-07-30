@@ -199,3 +199,39 @@
   float: right;
 }
 
+.child{
+			display:none;
+			position:absolute;
+			width:70px;
+			list-style-type:none;
+			text-align:center;
+			
+}
+
+.child li{
+	margin:1px 0px;
+	background-color:#2A2A2A; 
+	padding:5px;
+	border-color:#FFFFFF;
+	border-style:solid;
+	border-width:1px;
+}
+
+.child li a{
+	color:#7F7F7F;
+	text-decoration:none;
+}
+
+.child li:hover > a{
+	color:#FFFFFF;
+}
+		
+.nav li:hover > ul{
+	display:block;
+
+}
+
+.child li:hover > ul{
+	display:block;
+}
+
