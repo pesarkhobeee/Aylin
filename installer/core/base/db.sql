@@ -78,24 +78,11 @@ CREATE TABLE IF NOT EXISTS `menu` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `menu_display`
---
-CREATE TABLE IF NOT EXISTS `menu_display` (
-`menu_id` int(10) unsigned
-,`menu_name` varchar(200)
-,`menu_url` varchar(250)
-,`menu_section` enum('admin','user')
-,`parent` varchar(200)
-);
--- --------------------------------------------------------
-
---
 -- Structure for view `menu_display`
 --
 DROP TABLE IF EXISTS `menu_display`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `menu_display` AS select `menuchild`.`menu_id` AS `menu_id`,`menuchild`.`menu_name` AS `menu_name`,`menuchild`.`menu_url` AS `menu_url`,`menuchild`.`menu_section` AS `menu_section`,`menuparent`.`menu_name` AS `parent` from (`menu` `menuchild` left join `menu` `menuparent` on((`menuchild`.`parent` = `menuparent`.`menu_id`)));
-
+CREATE VIEW menu_display AS SELECT menuchild.`menu_id`, menuchild.`menu_name`, menuchild.`menu_url`, menuchild.`menu_section`, menuparent.`menu_name` as parent FROM `menu` as menuchild left join `menu` as menuparent on menuchild.`parent` = menuparent.`menu_id`
 
 -- --------------------------------------------------------
 
