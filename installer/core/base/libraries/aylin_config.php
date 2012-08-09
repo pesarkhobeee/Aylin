@@ -40,5 +40,43 @@ class aylin_config {
 		}
 	
 	}
+	
+	function create_tables_menu($active_item = -1){
+		
+		$CI =& get_instance();
+		$CI->load->model('roozbehmodel','roozbeh', TRUE);
+ 
+
+
+		$items = "\n";
+		$class = NULL;
+		$items .= '<li><a href="#">
+		جداول
+		</a>
+		<ul class="child">';
+		
+		$items .= '<li>'.anchor('roozbeh/tables_settings','<span>تنظیمات</span>',
+								(($class) ? array('class'=>$class):'')).'</li>';
+								
+		/* Insert Name of tables */
+		foreach ($CI->roozbeh->get_tables_list() as $table){
+			if(!$CI->roozbeh->get_table_view_permission($table))
+				continue;
+			
+			$id = $CI->roozbeh->register_tables_menu_item($table);
+			if($id == $active_item)
+				$class = 'active';
+
+			$items .= '<li>'.anchor('roozbeh/view_table/'.$id,
+							'<span>'.$CI->roozbeh->get_table_label($table,$table).'</span>',
+							(($class) ? array('class'=>$class):'')).'</li>';
+			$class = NULL;
+		}
+		
+
+		$items .= '</ul></li>';
+
+		return $items;
+	}
 
 }

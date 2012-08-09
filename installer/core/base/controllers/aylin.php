@@ -6,6 +6,7 @@ class Aylin extends CI_Controller {
 	{
 	            parent::__construct();
 	            // Your own constructor code
+	            $this->load->helper(array('form', 'url'));
 	            $this->load->library('Z_auth');
 	            $this->z_auth->login_check();
 						if(!$this->z_auth->acl_check($this->uri->segment(1)))
@@ -47,10 +48,45 @@ class Aylin extends CI_Controller {
 		$this->db->distinct();
 		$data["groups"]= $this->db->get('meta_data');
 		
-
+		
 		$this->load->view('admin_them/header');
 		$this->load->view('aylin/config',$data);
 		$this->load->view('admin_them/footer');
+	}
+	
+	
+		function upload()
+	{
+		$this->load->view('admin_them/header');
+		$this->load->view('aylin/upload_form', array('error' => ' ' ));
+		$this->load->view('admin_them/footer');
+	}
+	
+	
+		function do_upload()
+	{
+		$config['upload_path'] = './assets/uploads/';
+		$config['allowed_types'] = 'gif|jpg|png|pdf|zip';
+		//$config['max_size']	= '100';
+		//$config['max_width']  = '1024';
+		//$config['max_height']  = '768';
+
+		$this->load->library('upload', $config);
+
+		if ( ! $this->upload->do_upload())
+		{
+			$error = array('error' => $this->upload->display_errors());
+			$this->load->view('admin_them/header');
+			$this->load->view('aylin/upload_form', $error);
+			$this->load->view('admin_them/footer');
+		}
+		else
+		{
+			$data = array('upload_data' => $this->upload->data());
+			$this->load->view('admin_them/header');
+			$this->load->view('aylin/upload_success', $data);
+			$this->load->view('admin_them/footer');
+		}
 	}
 
 	public function send_mail($subject , $content , $to)

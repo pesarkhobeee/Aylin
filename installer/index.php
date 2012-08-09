@@ -125,7 +125,12 @@
 			<tr>
 				<td><input type="checkbox" name="aylin" value="aylin" checked="checked" /></td>
 				<td><img src="assets/aylin.jpg" /></td>
-				<td>Aylin 0.1</td>
+				<td>Aylin</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="roozbeh" value="roozbeh" checked="checked" /></td>
+				<td><img src="assets/roozbeh.jpg" /></td>
+				<td>Roozbeh</td>
 			</tr>
 		</table>
 		</fieldset>
