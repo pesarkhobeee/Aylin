@@ -16,9 +16,12 @@ INSERT INTO `meta_data` (`id`, `name`, `value`, `group`) VALUES
 --
 
 INSERT INTO `menu` (`menu_id`, `menu_name`, `menu_url`, `menu_section`, `parent`) VALUES
-(1, 'کاربران', 'users/show_users', 'admin', NULL),
-(2, 'منوها', 'menu/index', 'admin', NULL),
-(3, 'تنظیمات', 'aylin/config', 'admin', NULL);
+(1, 'تنظیمات', '#', 'admin', NULL),
+(2, 'عمومی', 'aylin/config', 'admin', 1),
+(3, 'کاربران', 'users/show_users', 'admin', 1),
+(4, 'منوها', 'menu/index', 'admin', 1),
+(5, 'محتوا', '#', 'admin', NULL),
+(6, 'آپلود', 'aylin/upload', 'admin', 5);
 
 --
 -- Dumping data for table `content`
