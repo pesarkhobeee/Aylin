@@ -9,8 +9,15 @@
 <li>بخش</li>
 <li>
 <select name="menu_section">
-	<option value="admin" <?php if($query->row("menu_section")=="admin") echo "selected='selected'"; ?>>مدیریت</option>
-	<option value="user" <?php if($query->row("menu_section")=="user") echo "selected='selected'"; ?>>کاربری</option>
+	<?php
+	foreach ($query_groups->result() as $row)
+	{
+		$tmp="";
+		if($query->row("menu_section")==$row->g_name) $tmp="selected='selected'"; 
+		echo "<option $tmp  value='".$row->g_name."'>".$row->g_name."</option>";
+	}
+	?>
+	
 </select>
 </li>
 <li>والد منو</li>

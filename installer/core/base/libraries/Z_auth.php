@@ -9,16 +9,22 @@ class Z_auth {
 		}
 	}
 		
-	function acl_check($pagename)
+	function acl_check($pagename_or_groupname)
 	{
 		$CI =& get_instance();
 		$CI->load->library('session');
 		$CI->load->database();
 		$CI->db->from('meta_data');
-		$CI->db->where('name', $pagename);
-		$CI->db->where('value', $CI->session->userdata('user_group'));
+		//$CI->db->where('name', $pagename_or_groupname);
+		//$CI->db->where('value', $CI->session->userdata('user_group'));
+		//$CI->db->or_where('value','*');
+		$CI->db->where('group', 'acl');
+		$where = "name ='".$pagename_or_groupname."' AND value='".$CI->session->userdata('user_group')."' OR name ='".$pagename_or_groupname."' AND  value='*'";
+		$CI->db->where($where);
 		$CI->db->where('group', 'acl');
 		$query= $CI->db->get();
+		// echo $CI->db->last_query();
+		 
 		if($query->num_rows()==1){		
 			return true;
 		}else{

@@ -3,9 +3,9 @@
 --
 
 INSERT INTO `meta_data` (`id`, `name`, `value`, `group`) VALUES
-(1, 'welcome', 'root', 'acl'),
-(2, 'welcome', 'user', 'acl'),
-(3, 'users', 'root', 'acl'),
+(1, 'welcome', '*', 'acl'),
+(2, 'users_root', 'root', 'acl'),
+(3, 'users', '*', 'acl'),
 (4, 'domain', 'user', 'acl'),
 (5, 'menu', 'root', 'acl'),
 (6, 'aylin', 'root', 'acl');
@@ -19,9 +19,10 @@ INSERT INTO `menu` (`menu_id`, `menu_name`, `menu_url`, `menu_section`, `parent`
 (1, 'تنظیمات', '#', 'admin', NULL),
 (2, 'عمومی', 'aylin/config', 'admin', 1),
 (3, 'کاربران', 'users/show_users', 'admin', 1),
-(4, 'منوها', 'menu/index', 'admin', 1),
-(5, 'محتوا', '#', 'admin', NULL),
-(6, 'آپلود', 'aylin/upload', 'admin', 5);
+(4, 'ACL', 'users/acl', 'admin', 1),
+(5, 'منوها', 'menu/index', 'admin', 1),
+(6, 'محتوا', '#', 'admin', NULL),
+(7, 'آپلود', 'aylin/upload', 'admin', 6);
 
 --
 -- Dumping data for table `content`
@@ -37,5 +38,10 @@ INSERT INTO `content` (`content_id`, `content_title`, `content_text`, `content_t
 --
 
 
-INSERT INTO `users` (`id`, `username`, `password`, `user_group`) VALUES
-(7, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'root');
+INSERT INTO `users` VALUES (7, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'root',1);
+
+
+--
+-- Dumping data for table `users_groups`
+--
+INSERT INTO `users_groups` VALUES (0,'root');

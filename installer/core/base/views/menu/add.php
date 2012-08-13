@@ -7,8 +7,12 @@
 <li>بخش</li>
 <li>
 <select name="menu_section">
-	<option value="admin">مدیریت</option>
-	<option value="user">کاربری</option>
+	<?php
+	foreach ($query_groups->result() as $row)
+	{
+		echo "<option value='".$row->g_name."'>".$row->g_name."</option>";
+	}
+	?>
 </select>
 </li>
 <li>والد منو</li>

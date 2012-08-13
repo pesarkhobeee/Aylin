@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `menu_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `menu_name` varchar(200) COLLATE utf8_persian_ci NOT NULL,
   `menu_url` varchar(250) COLLATE utf8_persian_ci NOT NULL,
-  `menu_section` enum('admin','user') COLLATE utf8_persian_ci NOT NULL,
+  `menu_section` varchar(50) COLLATE utf8_persian_ci NOT NULL,
   `parent` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`menu_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=25 ;
@@ -109,6 +109,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `username` varchar(50) COLLATE utf8_persian_ci NOT NULL,
   `password` varchar(300) COLLATE utf8_persian_ci NOT NULL,
   `user_group` varchar(50) COLLATE utf8_persian_ci NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=7 ;
@@ -131,3 +132,13 @@ CREATE TABLE IF NOT EXISTS `content` (
   `content_modify_date` date NOT NULL,
   PRIMARY KEY  (`content_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=11 ;
+
+--
+-- Table structure for table `users_groups`
+--
+
+CREATE TABLE IF NOT EXISTS `users_groups` (
+  `g_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `g_name` varchar(150) COLLATE utf8_persian_ci NOT NULL,
+  PRIMARY KEY (`g_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=6 ;
