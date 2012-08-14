@@ -205,6 +205,8 @@ class users extends CI_Controller {
 	
 	
 public function register_active($id){	
+	if($this->aylin_config->config("users_register","config_site")==1)
+	{
 			if($this->uri->segment(3)!="")
 			{
 				$this->db->where("id",$id);				
@@ -216,10 +218,12 @@ public function register_active($id){
 							$this->load->view('footer');
 				}
 			}
+	}
 }
 
 public function register_finish(){
-
+	if($this->aylin_config->config("users_register","config_site")==1)
+	{
 		if(isset($_POST["username"]))
 		{
 			
@@ -273,15 +277,17 @@ public function register_finish(){
 		$this->load->view('header');
 		$this->load->view('users/register_finish',$data);
 		$this->load->view('footer');
-
+	}
 }
 	
 	public function register(){
-
-		$this->load->helper('form');
-		$this->load->view('header');
-		$this->load->view('users/register');
-		$this->load->view('footer');
+		if($this->aylin_config->config("users_register","config_site")==1)
+		{
+			$this->load->helper('form');
+			$this->load->view('header');
+			$this->load->view('users/register');
+			$this->load->view('footer');
+		}
 	}
 	
 	

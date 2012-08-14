@@ -19,14 +19,14 @@
 	
 	if(($this->router->fetch_class()!="welcome" && $this->uri->segment(1)!="")||$this->session->userdata('user_group')){
 		
-		$str = $this->aylin_config->get_menu_list("admin",$uri_arr);	
+		$str = $this->aylin_config->get_menu_list($this->session->userdata('user_group'),$uri_arr);	
 		$str =  preg_replace('/class="child"/','class="nav"',$str,1);
 		echo $str;
 		echo $this->aylin_config->create_tables_menu();
 		echo '<li>'.anchor("/users/logout", "خروج").'</li>';
 		
 	}else{
-		$str =  $this->aylin_config->get_menu_list("user",$uri_arr);	
+		$str =  $this->aylin_config->get_menu_list("public",$uri_arr);	
 		$str =  preg_replace('/class="child"/','class="nav"',$str,1);
 		echo $str;
 	?>
@@ -35,3 +35,6 @@
 	}
 	?>
 </ul>
+
+
+

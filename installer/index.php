@@ -51,6 +51,14 @@
 				<td><input type="text" name="title" /></td>		
 			</tr>
 			<tr>
+				<td>فعال سازی ثبت نام کاربران</td>
+				<td>
+					بله <input type="radio" value="1" name="users_register">
+					<br>
+						خیر <input type="radio" value="0" name="users_register">
+				</td>		
+			</tr>
+			<tr>
 				<td>آدرس پایه</td>
 				<td><input type="text" name="base_url" value="<?php 
 					$base_url= "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];

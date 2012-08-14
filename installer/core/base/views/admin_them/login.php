@@ -23,3 +23,17 @@
 			</div>
 </form> 
 	
+
+<div style="text-align:center;">
+	<br>
+	<p>
+		<?php
+			if($this->aylin_config->config("users_register","config_site")==1)
+			{
+				echo anchor("users/register", "ثبت نام کاربر جدید");
+				
+			}
+		
+		?>
+	</p>
+</div>

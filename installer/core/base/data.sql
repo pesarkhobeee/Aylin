@@ -21,7 +21,7 @@ INSERT INTO `menu` (`menu_id`, `menu_name`, `menu_url`, `menu_section`, `parent`
 (3, 'کاربران', 'users/show_users', 'root', 1),
 (4, 'ACL', 'users/acl', 'root', 1),
 (5, 'منوها', 'menu/index', 'root', 1),
-(6, 'محتوا', '#', 'admin', NULL),
+(6, 'محتوا', '#', 'root', NULL),
 (7, 'آپلود', 'aylin/upload', 'root', 6);
 
 --

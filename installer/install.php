@@ -34,7 +34,10 @@
 		import_db_file("../application/db.sql");
 		import_db_file("../application/data.sql");
 		replace_in_file("['libraries'] = array('database', 'session');","['libraries'] = array('database', 'session','aylin_config');","../application/config/autoload.php");
+		replace_in_file('$config[\'sess_use_database\']	= FALSE;','$config[\'sess_use_database\']	= TRUE;',"../application/config/config.php");
 		replace_in_file("<?php","<?php ini_set('date.timezone', 'Asia/tehran');","../index.php");
+		$db_data=array("name"=>"users_register","value"=>$_POST["users_register"],"group"=>"config_site");
+		auto_generate_insert("meta_data",$db_data);
 		$db_data=array("name"=>"title","value"=>$_POST["title"],"group"=>"config_site");
 		auto_generate_insert("meta_data",$db_data);
 		$db_data=array("name"=>"smtp_host","value"=>$_POST["smtp_host"],"group"=>"config_mail");
