@@ -17,7 +17,7 @@
 			foreach ($query->result() as $row)
 			{
 				echo "<tr>";
-				echo "<td>".anchor('/menu/index/'.$row->menu_id ,'<i class="icon-remove"></i>', array('class' => 'btn','tooltip'=>'Delete'))."&nbsp;".anchor('menu/edit/'.$row->menu_id, '<i class="icon-pencil"></i>', array('class' => 'btn','tooltip'=>'Update'))."&nbsp;"."</td>";
+				echo "<td>".anchor('/menu/index/'.$row->menu_id ,'<i class="icon-remove"></i>', array('class' => 'btn','tooltip'=>'Delete','onclick'=>'return confirm(\'آیا قصد دارید این سطر را حذف کنید؟\')'))."&nbsp;".anchor('menu/edit/'.$row->menu_id, '<i class="icon-pencil"></i>', array('class' => 'btn','tooltip'=>'Update'))."&nbsp;"."</td>";
 				echo "<td>".$row->menu_name."</td>";
 				echo "<td>".$row->menu_url."</td>";
 				echo "<td>".$row->menu_section."</td>";

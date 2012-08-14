@@ -92,7 +92,7 @@
 			foreach ($query_customer_detail->result() as $row)
 			{
 				echo "<tr>";
-				echo "<td>".anchor('users/customer_detail/duser/'.$row->cd_id, '<i class="icon-remove"></i>', array('class' => 'btn','tooltip'=>'Delete'))."&nbsp;"."</td>";
+				echo "<td>".anchor('users/customer_detail/duser/'.$row->cd_id, '<i class="icon-remove"></i>', array('class' => 'btn','tooltip'=>'Delete','onclick'=>'return confirm(\'آیا قصد دارید این سطر را حذف کنید؟\')'))."&nbsp;"."</td>";
 				echo "<td>".$row->cd_name."</td>";
 				echo "<td>".$row->cd_family."</td>";
 				echo "<td>".$row->cd_company."</td>";

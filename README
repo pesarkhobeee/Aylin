@@ -1,12 +1,20 @@
+Aylin based on Codeigniter and use other third party useful library to create an easy and rapid web development.
+for more information , bug report and partnership please join to :
 aylincms@googlegroups.com
 
-
-
-
+INSTALLATION
+====================
+copy source to web server directory
+create a database
+change owner of source to webserver user, for example:
+  in  slackware:
+    chown -R apache:apache aylin/
+  id debian:
+    chown -R www-data:www-data aylin/
+and run install folder inside of AylinCMS in web browser
 
 TODO
 ====================
-Add user update to users controller
-Add random password generator to user controller
-Add public user registeror to user controller
-Convert menu controller code from grocery CRUD to Active record for prevent hard code in the base
+Add password recovery system for user managment
+fix SEO in CMS
+add backup system to base

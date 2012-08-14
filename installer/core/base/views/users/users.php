@@ -99,7 +99,7 @@
 					$tmp = anchor('users/show_users/diactive/'.$row->id,"<i class='icon-ok-sign'></i>");
 				}
 				echo "<tr>";
-				echo "<td>".anchor('users/show_users/duser/'.$row->id, '<i class="icon-remove"></i>', array('class' => 'btn','tooltip'=>'Delete','onclick'=>'return confirm(\'آیا قصد دارید این سطر را حذف کنید؟\')'))."&nbsp;<a href='#update' class='btn' data-toggle='modal' onclick='document.getElementById(\"userid\").value=".$row->id."'><i class='icon-pencil' ></i></a>&nbsp;"."</td>";
+				echo "<td>".anchor('users/show_users/duser/'.$row->id, '<i class="icon-remove"></i>', array('class' => 'btn','tooltip'=>'Delete','onclick'=>'return confirm(\'آیا قصد دارید این سطر را حذف کنید؟\')'))."&nbsp;<a href='#update' class='btn' data-toggle='modal' onclick='document.getElementById(\"userid\").value=".$row->id."'><i class='icon-pencil' ></i></a>&nbsp;".anchor('users/show_user/'.$row->id, '<i class="icon-eye-open"></i>',array('class' => 'btn','tooltip'=>'Show Detail'))."</td>";
 				echo "<td>".$row->username."</td>";
 				echo "<td>".$row->user_group."</td>";
 				echo "<td>".$tmp."</td>";

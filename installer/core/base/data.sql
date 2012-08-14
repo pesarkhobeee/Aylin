@@ -45,3 +45,4 @@ INSERT INTO `users` VALUES (7, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'roo
 -- Dumping data for table `users_groups`
 --
 INSERT INTO `users_groups` VALUES (0,'root');
+INSERT INTO `users_groups` VALUES (0,'public');

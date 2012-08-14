@@ -33,7 +33,7 @@ class users extends CI_Controller {
 		$this->db->select('*');
 		$this->db->from('customer_detail');
 		$this->db->join('users', 'customer_detail.cd_users_id = users.id'); 
-		$this->db->where('cd_id', $user_id);
+		$this->db->where('id', $user_id);
 		$data["query"] = $this->db->get();
 		$this->load->view('admin_them/header');
 		$this->load->view('/users/show_user',$data);
