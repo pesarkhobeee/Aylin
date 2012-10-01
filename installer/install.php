@@ -66,6 +66,14 @@
 		rrmdir('../application/assets/');
 		import_db_file("../application/data.sql");
 	}
+	
+	
+	if(isset($_POST["newsletter"])){
+		extractor("./core/sub_systems/newsletter.zip","../application/");
+		import_db_file("../application/db.sql");
+		import_db_file("../application/data.sql");
+	}	
+	
 	?>
 	
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"

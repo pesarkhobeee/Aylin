@@ -80,43 +80,53 @@ class aylin_config {
 	}
 	
 	
-	public function send_mail($subject , $content , $to)
+	public function send_mail($subject , $content , $to ,$send_mode="normal")
 	{
-		
 
-    
-  
+  $CI =& get_instance();
 		
-    	$this->load->library('email');
-    	$this->load->helper('file');
+    	$CI->load->library('email');
+    	$CI->load->helper('file');
 	$string = read_file('./assets/others/signature.html');
 	$content.="<br><br>".$string;
 	
         $config['protocol']    = 'smtp';
-        $config['smtp_host']    = $this->aylin_config->config("smtp_host","config_mail");
-        $config['smtp_port']    = $this->aylin_config->config("smtp_port","config_mail");
+        $config['smtp_host']    = $CI->aylin_config->config("smtp_host","config_mail");
+        $config['smtp_port']    = $CI->aylin_config->config("smtp_port","config_mail");
         $config['smtp_timeout'] = '7';
-        $config['smtp_user']    = $this->aylin_config->config("smtp_user","config_mail");
-        $config['smtp_pass']    = $this->aylin_config->config("smtp_pass","config_mail");
+        $config['smtp_user']    = $CI->aylin_config->config("smtp_user","config_mail");
+        $config['smtp_pass']    = $CI->aylin_config->config("smtp_pass","config_mail");
         $config['charset']    = 'utf-8';
         $config['newline']    = "\r\n";
         $config['mailtype'] = 'html'; // or html
         $config['validation'] = TRUE; // bool whether to validate email or not      
 
-        $this->email->initialize($config);
 
-        $this->email->from($this->aylin_config->config("smtp_mail","config_mail"), $subject );
-        $this->email->to($to); 
+		
 
-        $this->email->subject($subject );
-        $this->email->message($content);  
+        $CI->email->initialize($config);
 
-        if($this->email->send())
+        $CI->email->from($CI->aylin_config->config("smtp_mail","config_mail"), $subject );
+        
+        if($send_mode=="normal")
+        {
+			$CI->email->to($to); 
+		}elseif($send_mode=="bcc"){
+			$CI->email->bcc($to);
+		}else{
+			$CI->email->cc($to);
+		}
+			
+
+        $CI->email->subject($subject );
+        $CI->email->message($content);  
+
+        if($CI->email->send())
 			return true;
 		else
 			return false;
 
-       //echo $this->email->print_debugger();
+       //echo $CI->email->print_debugger();
 
 
 	}

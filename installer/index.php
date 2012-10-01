@@ -149,6 +149,10 @@
 					<td><input type="checkbox" name="content" value="content"  checked="checked"/></td>
 					<td> سیستم مدیریت محتوا بهمراه CKEditor 3.6.2</td>
 				</tr>
+				<tr>
+					<td><input type="checkbox" name="newsletter" value="content"  checked="checked"/></td>
+					<td>سیستم خبرنامه</td>
+				</tr>
 			</table>
 		</fieldset>
 		

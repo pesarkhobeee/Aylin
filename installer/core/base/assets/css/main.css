@@ -1,28 +1,7 @@
 #main_content {
     min-height: 500px;
 }
-#group ul li{
-		display:inline-table;
-		background-color: #f9f9f9;
-		border: 1px solid #D0D0D0;
-		color: #002166;
-		margin:5px;
-		padding:0px 5px;
-		}
-		
-	#group ul li a{
-			text-decoration:none;
-			color:#D0D0D0;	
-		}
-	#task li{
-		display:inline-table;
-		margin-left:10px;
-		
-		}
-	#task{
-		padding-bottom:15px;
-		border-bottom : 1px solid #D0D0D0;
-		}
+
 		
 	th {
  	   	background: -moz-linear-gradient(center top , #FFFFFF, #CCCCCC) repeat scroll 0 0 transparent;
