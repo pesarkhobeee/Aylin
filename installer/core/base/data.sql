@@ -8,21 +8,20 @@ INSERT INTO `meta_data` (`id`, `name`, `value`, `group`) VALUES
 (3, 'users', '*', 'acl'),
 (4, 'domain', 'user', 'acl'),
 (5, 'menu', 'root', 'acl'),
-(6, 'aylin', 'root', 'acl');
+(6, 'aylin_base', 'root', 'acl');
 
 
 --
--- Dumping data for table `menu`
 --
 
 INSERT INTO `menu` (`menu_id`, `menu_name`, `menu_url`, `menu_section`, `parent`) VALUES
 (1, 'تنظیمات', '#', 'root', NULL),
-(2, 'عمومی', 'aylin/config', 'root', 1),
+(2, 'عمومی', 'aylin_base/config', 'root', 1),
 (3, 'کاربران', 'users/show_users', 'root', 1),
 (4, 'ACL', 'users/acl', 'root', 1),
 (5, 'منوها', 'menu/index', 'root', 1),
 (6, 'محتوا', '#', 'root', NULL),
-(7, 'آپلود', 'aylin/upload', 'root', 6);
+(7, 'آپلود', 'aylin_base/upload', 'root', 6);
 
 --
 -- Dumping data for table `content`

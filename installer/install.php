@@ -2,9 +2,9 @@
 	include_once("functions.php");
 
 	if(isset($_POST["codeigniter"])){
-		extractor("./core/CodeIgniter_2.1.0.zip","../");	
-		smartCopy("../CodeIgniter_2.1.0/","..");
-		rrmdir("../CodeIgniter_2.1.0");
+		extractor("./core/CodeIgniter_2.1.3.zip","../");	
+		smartCopy("../CodeIgniter_2.1.3/","..");
+		rrmdir("../CodeIgniter_2.1.3");
 		replace_in_file("['helper'] = array();","['helper'] = array('url');","../application/config/autoload.php");
 		replace_in_file("['base_url']	= ''","['base_url']	= '".$_POST["base_url"]."'","../application/config/config.php");
 		replace_in_file("['encryption_key'] = '';","['encryption_key'] = '".GenerateKey()."';","../application/config/config.php");
@@ -18,7 +18,8 @@
 	}
 
 	if(isset($_POST["grocery"])){
-		extractor("./core/grocery-CRUD-1.2.2.zip","../");
+		extractor("./core/grocery_CRUD-1.3.2.zip","../");
+		replace_in_file('$config[\'grocery_crud_default_language\']	= \'english\';','$config[\'grocery_crud_default_language\']	= \'persian\';',"../application/config/grocery_crud.php");
 	}
 
 	if(isset($_POST["bootstrap"])){
@@ -33,7 +34,8 @@
 		rrmdir('../application/assets/');
 		import_db_file("../application/db.sql");
 		import_db_file("../application/data.sql");
-		replace_in_file("['libraries'] = array('database', 'session');","['libraries'] = array('database', 'session','aylin_config');","../application/config/autoload.php");
+		replace_in_file("['libraries'] = array('database', 'session');","['libraries'] = array('database', 'session','aylin');","../application/config/autoload.php");
+		replace_in_file('$config[\'global_xss_filtering\'] = FALSE;','$config[\'global_xss_filtering\'] = TRUE;',"../application/config/config.php");
 		replace_in_file('$config[\'sess_use_database\']	= FALSE;','$config[\'sess_use_database\']	= TRUE;',"../application/config/config.php");
 		replace_in_file("<?php","<?php ini_set('date.timezone', 'Asia/tehran');","../index.php");
 		$db_data=array("name"=>"users_register","value"=>$_POST["users_register"],"group"=>"config_site");
@@ -49,6 +51,8 @@
 		$db_data=array("name"=>"smtp_pass","value"=>$_POST["smtp_pass"],"group"=>"config_mail");
 		auto_generate_insert("meta_data",$db_data);
 		$db_data=array("name"=>"smtp_mail","value"=>$_POST["smtp_mail"],"group"=>"config_mail");
+		auto_generate_insert("meta_data",$db_data);
+		$db_data=array("name"=>"widgets","value"=>$_POST["widgets"],"group"=>"config_site");
 		auto_generate_insert("meta_data",$db_data);
 	}
 	
@@ -72,7 +76,19 @@
 		extractor("./core/sub_systems/newsletter.zip","../application/");
 		import_db_file("../application/db.sql");
 		import_db_file("../application/data.sql");
-	}	
+	}
+
+	if(isset($_POST["news"])){
+		extractor("./core/sub_systems/news.zip","../application/");
+		import_db_file("../application/db.sql");
+		import_db_file("../application/data.sql");
+	}
+	
+	if(isset($_POST["links"])){
+		extractor("./core/sub_systems/links.zip","../application/");
+		import_db_file("../application/db.sql");
+		import_db_file("../application/data.sql");
+	}
 	
 	?>
 	

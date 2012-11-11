@@ -5,7 +5,7 @@
       <hr/>
 
       <footer>
-        <p>&copy;&nbsp;<a href="http://www.mahestan.info/">Mahestan</a>&nbsp;2012 -&nbsp;Aylin 0.8
+        <p>&copy;&nbsp;<a href="http://www.mahestan.info/">Mahestan</a>&nbsp;2012 -&nbsp;Aylin 1.0
 </p>
         <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
       </footer>

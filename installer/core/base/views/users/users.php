@@ -3,6 +3,14 @@
         <a data-dismiss='alert' class='close'>×</a>
         <strong>Well done!</strong> $massege</div>";}
 		?>
+		
+			<?php
+			if(isset($alert)){echo "<div class='fade in alert alert-error'>
+        <a data-dismiss='alert' class='close'>×</a>
+         $alert</div>";}
+		?>	
+		
+		
 
     <div class="modal fade" id="user">
     	<div class="modal-header">

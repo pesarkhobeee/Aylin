@@ -12,20 +12,20 @@
 	else
 		$uri_arr="";
 	if($uri==""||$uri=="welcome/welcome")
-		echo '<li class="active">'. anchor("welcome/welcome", "خانه", "title=HOME") .'</li>';
+		echo '<li class="active">'. anchor("/", "خانه", "title=HOME") .'</li>';
 	else
-		echo '<li>'.anchor("welcome/welcome", "خانه", "title=HOME").'</li>';
+		echo '<li>'.anchor("/", "خانه", "title=HOME").'</li>';
 
 	
 	if(($this->router->fetch_class()!="welcome" && $this->uri->segment(1)!="")||$this->session->userdata('user_group')){
 		
-		$str = $this->aylin_config->get_menu_list($this->session->userdata('user_group'),$uri_arr);	
+		$str = $this->aylin->get_menu_list($this->session->userdata('user_group'),$uri_arr);	
 		$str =  preg_replace('/class="child"/','class="nav"',$str,1);
 		echo $str;
 		echo '<li>'.anchor("/users/logout", "خروج").'</li>';
 		
 	}else{
-		$str =  $this->aylin_config->get_menu_list("public",$uri_arr);	
+		$str =  $this->aylin->get_menu_list("public",$uri_arr);	
 		$str =  preg_replace('/class="child"/','class="nav"',$str,1);
 		echo $str;
 	?>

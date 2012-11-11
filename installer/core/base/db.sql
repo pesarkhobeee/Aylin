@@ -142,3 +142,17 @@ CREATE TABLE IF NOT EXISTS `users_groups` (
   `g_name` varchar(150) COLLATE utf8_persian_ci NOT NULL,
   PRIMARY KEY (`g_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=6 ;
+
+
+--
+-- Table structure for table `users_remember_password`
+--
+
+CREATE TABLE IF NOT EXISTS `users_remember_password` (
+  `urp_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `urp_emil` varchar(200) COLLATE utf8mb4_persian_ci NOT NULL,
+  `urp_random_string` varchar(30) COLLATE utf8mb4_persian_ci NOT NULL,
+  PRIMARY KEY (`urp_id`),
+  UNIQUE KEY `urp_random_string` (`urp_random_string`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_persian_ci AUTO_INCREMENT=1 ;
+

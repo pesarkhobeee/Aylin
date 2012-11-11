@@ -8,7 +8,7 @@
 		?>
 		
 		
-<form action="" method="post">
+<?php echo form_open(); ?>
 
 			<div style="text-align:center;">
 				
@@ -21,14 +21,18 @@
 					<input type="submit" value="login" style="width:218px;"/>
 				
 			</div>
-</form> 
+<?php echo form_close(); ?>
 	
 
 <div style="text-align:center;">
 	<br>
 	<p>
 		<?php
-			if($this->aylin_config->config("users_register","config_site")==1)
+
+			echo anchor("users/remember_password", "بازیابی کلمه عبور");
+			echo "<br>";
+		
+			if($this->aylin->config("users_register","config_site")==1)
 			{
 				echo anchor("users/register", "ثبت نام کاربر جدید");
 				

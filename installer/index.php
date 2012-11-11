@@ -67,6 +67,17 @@
 				?>" /></td>		
 			</tr>
 			<tr>
+				<td>نمایش widget ها</td>
+				<td>
+
+					بله <input type="radio" value="1" name="widgets">
+					<br>
+						خیر <input type="radio" value="0" name="widgets">
+				
+
+</td>
+			</tr>
+			<tr>
 				<td>smtp Host</td>
 				<td><input type="text" name="smtp_host" /></td>		
 			</tr>
@@ -118,17 +129,17 @@
 			<tr>
 				<td><input type="checkbox" name="codeigniter" value="codeigniter"  checked="checked"/></td>
 				<td><img src="assets/code_igniter.jpeg" /></td>
-				<td>CodeIgniter 2.1.0</td>
+				<td>CodeIgniter 2.1.3</td>
 			</tr>
 			<tr>
 				<td><input type="checkbox" name="grocery" value="grocery" checked="checked" /></td>
 				<td><img src="assets/grocery.png" /></td>	
-				<td>Grocery CRUD 1.2.2</td>
+				<td>Grocery CRUD 1.3.2</td>
 			</tr>
 			<tr>
 				<td><input type="checkbox" name="bootstrap" value="bootstrap" checked="checked" /></td>
 				<td><img src="assets/bootstrap.jpeg" /></td>	
-				<td>Bootstrap 2.0.4</td>
+				<td>Bootstrap 2.2.1</td>
 			</tr>
 			<tr>
 				<td><input type="checkbox" name="aylin" value="aylin" checked="checked" /></td>
@@ -150,8 +161,16 @@
 					<td> سیستم مدیریت محتوا بهمراه CKEditor 3.6.2</td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" name="newsletter" value="content"  checked="checked"/></td>
+					<td><input type="checkbox" name="newsletter" value="newsletter"  checked="checked"/></td>
 					<td>سیستم خبرنامه</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="news" value="news"  checked="checked"/></td>
+					<td>سیستم اخبار</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="links" value="links"  checked="checked"/></td>
+					<td>سیستم لینک ها و لوگو ها</td>
 				</tr>
 			</table>
 		</fieldset>

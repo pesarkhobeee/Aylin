@@ -38,11 +38,11 @@ class Welcome extends CI_Controller {
 	}
 	
 	function login(){
-		
+		$this->load->helper('form');
 		$data["msg"]="";
-		$this->load->library('Z_auth');
+		
 		if(isset($_POST["username"])){
-				if($this->z_auth->login($_POST["username"],$_POST["password"])){
+				if($this->aylin->login($_POST["username"],$_POST["password"])){
 					redirect('/users/show_users', 'refresh');
 				}else{
 					$data["msg"]="Username Or Password is Wrong";

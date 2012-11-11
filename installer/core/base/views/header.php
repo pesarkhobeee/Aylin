@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title><?php echo $this->aylin_config->config("title","config_site"); ?></title>
+    <title><?php echo $this->aylin->config("title","config_site"); ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -32,11 +32,8 @@
     <![endif]-->
 
     <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="shortcut icon" href="/assets/img/favicon.ico">
 
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
 <?php 
 if(isset($css_files) && isset($js_files)){
 ?>
@@ -63,7 +60,7 @@ if(isset($css_files) && isset($js_files)){
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#"><?php echo $this->aylin_config->config("title","config_site"); ?></a>
+          <a class="brand" href="#"><?php echo $this->aylin->config("title","config_site"); ?></a>
           <div class="nav-collapse">
 		<?php include("menu.php"); ?>
           </div><!--/.nav-collapse -->
@@ -74,7 +71,19 @@ if(isset($css_files) && isset($js_files)){
 
     <div class="container">
 
-
+	<?php
+	 
+		if($this->aylin->config("slide_show","config_links") == 1)
+			if($this->aylin->config("show_just_in_homepage","config_links") == 1)
+			{
+				if($this->uri->segment(1)=="")
+					echo $this->aylin->slides();
+			}
+			else
+			{
+				echo $this->aylin->slides(); 
+			}
+	?>
 
       <!-- Example row of columns -->
       <div class="row">
