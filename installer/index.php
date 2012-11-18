@@ -147,7 +147,7 @@
 				<td>Aylin</td>
 			</tr>
 			<tr>
-				<td><input type="checkbox" name="roozbeh" value="roozbeh" checked="checked" /></td>
+				<td><input type="checkbox" name="roozbeh" value="roozbeh"  /></td>
 				<td><img src="assets/roozbeh.jpg" /></td>
 				<td>Roozbeh</td>
 			</tr>
@@ -171,6 +171,10 @@
 				<tr>
 					<td><input type="checkbox" name="links" value="links"  checked="checked"/></td>
 					<td>سیستم لینک ها و لوگو ها</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="poll" value="poll"  checked="checked"/></td>
+					<td>سیستم نظرسنجی</td>
 				</tr>
 			</table>
 		</fieldset>

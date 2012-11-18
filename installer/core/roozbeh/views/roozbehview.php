@@ -92,7 +92,7 @@ foreach($passed_data as $pd){
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#"><?php echo $this->aylin_config->config("title","config_site"); ?></a>
+          <a class="brand" href="#"><?php echo $this->aylin->config("title","config_site"); ?></a>
           <div class="nav-collapse">
 		<?php include("menu.php"); ?>
           </div><!--/.nav-collapse -->

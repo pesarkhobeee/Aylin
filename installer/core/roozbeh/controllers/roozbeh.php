@@ -5,9 +5,9 @@ class Roozbeh extends CI_Controller{
 	
 		parent::__construct();
 		
-		   $this->load->library('Z_auth');
-            $this->z_auth->login_check();
-					if(!$this->z_auth->acl_check($this->uri->segment(1)))
+		   $this->load->library('aylin');
+            $this->aylin->login_check();
+					if(!$this->aylin->acl_check($this->uri->segment(1)))
 						redirect('/welcome/login', 'refresh');
 		
 		/* Load libraries */

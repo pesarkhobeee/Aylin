@@ -89,6 +89,12 @@
 		import_db_file("../application/db.sql");
 		import_db_file("../application/data.sql");
 	}
+
+	if(isset($_POST["poll"])){
+		extractor("./core/sub_systems/poll.zip","../application/");
+		import_db_file("../application/db.sql");
+		import_db_file("../application/data.sql");
+	}
 	
 	?>
 	

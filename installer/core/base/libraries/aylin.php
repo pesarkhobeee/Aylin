@@ -314,4 +314,44 @@ class aylin{
 		    
 		return $newsletter_box;
 	}
+
+	function poll()
+	{
+		$CI =& get_instance();
+
+		if($CI->session->userdata('poll')=="")
+		{
+			$id =$CI->aylin->config("public_poll","config_poll");
+			$CI->db->where("p_id", $id);		
+			$data["poll_poll"]= $CI->db->get('poll_poll');
+			$CI->db->where("c_poll_id", $id);		
+			$data["poll_choice"]= $CI->db->get('poll_choice');
+			$CI->load->view('admin_them/header');
+			$CI->load->view('poll/poll',$data);
+			$CI->load->view('admin_them/footer');
+		}
+		else
+		{
+		
+			$id=$CI->aylin->config("public_poll","config_poll");
+
+			$CI->db->where("p_id", $id);		
+			$data["poll_poll"]= $CI->db->get('poll_poll');
+			$CI->db->where("c_poll_id", $id);		
+			$data["poll_choice"]= $CI->db->get('poll_choice');
+
+
+			$CI->db->select_sum('c_votes');
+			$CI->db->where("c_poll_id", $id);
+			$query = $CI->db->get('poll_choice');
+			$data["sum"] = $query->row();
+
+			$CI->load->view('admin_them/header');
+			$CI->load->view('poll/poll_show',$data);
+			$CI->load->view('admin_them/footer');	
+
+		}
+
+	}
+
 }

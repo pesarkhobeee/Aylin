@@ -13,12 +13,19 @@
 				<h3>فهرست</h3>
 					<?php echo $this->aylin->links(); ?>
 			</div>
+		</div>
+		<div class="row">
 			<div class="span4 widget">
 				<a href="<?php echo base_url("index.php/news/rss"); ?>"><img alt="RSS" src="<?php echo base_url("/assets/img/RSS.png"); ?>" /></a>
 			</div>
-			<div class="span8 widget">
+			<div class="span4 widget">
+				<?php echo $this->aylin->poll(); ?>
+			</div>
+			<div class="span4 widget">
 				<?php echo $this->aylin->newsletter(); ?>
 			</div>
+		</div>
+		<div class="row">
 			<div class="span12 widget">
 				<?php echo $this->aylin->logos(); ?>
 			</div>
