@@ -17,7 +17,7 @@
 		echo '<li>'.anchor("/", "خانه", "title=HOME").'</li>';
 
 	
-	if(($this->router->fetch_class()!="welcome" && $this->uri->segment(1)!="")||$this->session->userdata('user_group')){
+	if( $this->session->userdata('user_group')){
 		
 		$str = $this->aylin->get_menu_list($this->session->userdata('user_group'),$uri_arr);	
 		$str =  preg_replace('/class="child"/','class="nav"',$str,1);

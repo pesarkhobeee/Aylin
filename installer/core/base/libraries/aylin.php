@@ -306,12 +306,38 @@ class aylin{
 	{	
 		$CI =& get_instance();
 		$CI->load->helper('form');	
-		$newsletter_box= form_open('newsletter/submit');
+		$newsletter_box= "<div  id='newsletter_container'>";
+
+		$newsletter_box.= "<form name='newsletter' id='newsletter' method='post' action='' >";
 		$newsletter_box.= '<ul id="newsletter"><li>'.form_label('نام', 'nm_name').form_input(array("id"=>"nm_name","name"=>"nm_name"))."</li>";
 		$newsletter_box.= '<li>'.form_label('پست الکترونیکی', 'nm_mail').form_input(array("name"=>"nm_mail","id"=>"nm_mail"))."</li>";
-		$newsletter_box.= '<li>'.form_submit(array('class'=>'btn btn-primary'), 'ثبت نام در خبرنامه').'</li></ul>';
-		$newsletter_box.= form_close();
-		    
+		$newsletter_box.="<li><input type='button' id='submit_newsletter' class='btn btn-primary' value='ثبت نام در خبرنامه' /> </li></ul>";
+		$newsletter_box.= "</form></div>";
+		$newsletter_box.= '
+			<script>
+			$(document).ready(function(){
+				$("#submit_newsletter").click(function() {
+
+					var dataString =\'nm_name=\'+$("#nm_name").val()+\'nm_mail=\'+$("#nm_mail").val();
+
+					$.ajax({
+					      type: "POST",
+					      url: \''. base_url().'index.php/newsletter/submit\',
+					      data:dataString,
+					      success: function(result_data) {
+						$(\'#newsletter_container\').html(result_data);
+					      },
+					      error: function () {
+						$(\'#newsletter_container\').html("<b>متاسفانه در ارسال اطلاعات مشکلی پیش آمد</b>");
+					      }
+					     });
+
+					return false;
+				 });
+
+			 });
+			</script>
+		    ';
 		return $newsletter_box;
 	}
 
@@ -326,9 +352,9 @@ class aylin{
 			$data["poll_poll"]= $CI->db->get('poll_poll');
 			$CI->db->where("c_poll_id", $id);		
 			$data["poll_choice"]= $CI->db->get('poll_choice');
-			$CI->load->view('admin_them/header');
+			//$CI->load->view('admin_them/header');
 			$CI->load->view('poll/poll',$data);
-			$CI->load->view('admin_them/footer');
+			//$CI->load->view('admin_them/footer');
 		}
 		else
 		{
@@ -346,9 +372,9 @@ class aylin{
 			$query = $CI->db->get('poll_choice');
 			$data["sum"] = $query->row();
 
-			$CI->load->view('admin_them/header');
+			//$CI->load->view('admin_them/header');
 			$CI->load->view('poll/poll_show',$data);
-			$CI->load->view('admin_them/footer');	
+			//$CI->load->view('admin_them/footer');	
 
 		}
 

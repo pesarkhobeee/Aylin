@@ -72,7 +72,7 @@ if(isset($css_files) && isset($js_files)){
 
     <div class="container">
 
-
+	<div style='min-height:700px;'> <!-- start of befor_footer -->
 
       <!-- Example row of columns -->
       <div class="row">

@@ -28,7 +28,7 @@
 		</div>
 		<div class="modal-footer">
 			 <a href="#" onclick="document.getElementById('acl_forum').submit()" class="btn btn-primary">Submit ACL</a>
-		 <a href="#" class="btn">Close</a>
+		 <a href="#" class="btn" data-dismiss="modal">Close</a>
 		</div>
     </div>	
  
@@ -58,7 +58,7 @@
   	</div>
     <div class="modal-footer">
     	 <a href="#" onclick="document.getElementById('update_groups').submit()" class="btn btn-primary">Submit User</a>
-   	 <a href="#" class="btn">Close</a>
+   	 <a href="#" class="btn" data-dismiss="modal">Close</a>
     </div>
     </div>
  
@@ -67,7 +67,7 @@
 		<?php
 			echo  "<table class='table table-striped' width='100%' >
 				<tr>
-				<th>".anchor('#group', '<i class="icon-pencil"></i>', array('class' => 'btn','data-toggle'=>'modal'))."&nbsp;</th>
+				<th>".anchor('#group', '<i class="icon-pencil"></i>', array('class' => 'btn','data-toggle'=>'modal','rel'=>'tooltip','data-original-title'=>'ایجاد'))."&nbsp;</th>
 				<th>Page Name or Group Name</th>
 				<th>users</th>
 				</tr>
@@ -76,7 +76,7 @@
 			foreach ($query->result() as $row)
 			{
 				echo "<tr>";
-				echo "<td>".anchor('users/acl/d/'.$row->id, '<i class="icon-remove"></i>', array('class' => 'btn','tooltip'=>'Delete','onclick'=>'return confirm(\'آیا قصد دارید این سطر را حذف کنید؟\')'))."&nbsp;<a href='#update' class='btn' data-toggle='modal' onclick='document.getElementById(\"id\").value=".$row->id.";document.getElementById(\"name\").value=\"".$row->name."\";document.getElementById(\"value\").value=\"".$row->value."\"'><i class='icon-pencil' ></i></a>&nbsp;"."</td>";
+				echo "<td>".anchor('users/acl/d/'.$row->id, '<i class="icon-remove"></i>', array('class' => 'btn','tooltip'=>'Delete','onclick'=>'return confirm(\'آیا قصد دارید این سطر را حذف کنید؟\')','rel'=>'tooltip','data-original-title'=>'حذف'))."&nbsp;<a href='#update' class='btn'  rel='tooltip' data-original-title='بروزرسانی'  data-toggle='modal' onclick='document.getElementById(\"id\").value=".$row->id.";document.getElementById(\"name\").value=\"".$row->name."\";document.getElementById(\"value\").value=\"".$row->value."\"'><i class='icon-pencil' ></i></a>&nbsp;"."</td>";
 				echo "<td>".$row->name."</td>";
 				echo "<td>".$row->value."</td>";
 				echo "</tr>";

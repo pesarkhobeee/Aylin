@@ -1,7 +1,7 @@
 		</div>
 	
 </div>
-
+	</div><!-- end of befor_footer -->
       <hr/>
 
       <footer>
@@ -22,20 +22,18 @@
 
 
 <script>
-$('#myModal').modal('hide');
-$('#chang_owner').modal('hide');
+$(document).ready(function(){
+	$('#myModal').modal('hide');
+	$('#chang_owner').modal('hide');
 
-        // carousel 
-    $('#myCarousel').carousel();
+		// carousel 
+	    $('#myCarousel').carousel();
 
 
- // tooltip demo
-    $('.tooltip-demo.well').tooltip({
-      selector: "a[rel=tooltip]"
-    })
+	 // tooltip demo
+	$('.btn').tooltip()
 
-    $('.tooltip-test').tooltip()
-    $('.popover-test').popover()
+    //$('.duble_date').popover()
 
     // popover demo
     $("a[rel=popover]")
@@ -43,6 +41,7 @@ $('#chang_owner').modal('hide');
       .click(function(e) {
         e.preventDefault()
       })
+});
    </script>
 </body>
 </html>

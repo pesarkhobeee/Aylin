@@ -6,7 +6,7 @@
 <?php
 			echo  "<table class='table table-striped' width='100%' id='hosts'>
 				<tr>
-				<th>".anchor('/menu/add', '<i class="icon-user"></i>', array('class' => 'btn'))."&nbsp;</th>
+				<th>".anchor('/menu/add', '<i class="icon-user"></i>', array('class' => 'btn','rel'=>'tooltip','data-original-title'=>'ایجاد'))."&nbsp;</th>
 				<th>نام منو</th>
 				<th>آدرس منو</th>
 				<th>بخش</th>
@@ -17,7 +17,7 @@
 			foreach ($query->result() as $row)
 			{
 				echo "<tr>";
-				echo "<td>".anchor('/menu/index/'.$row->menu_id ,'<i class="icon-remove"></i>', array('class' => 'btn','tooltip'=>'Delete','onclick'=>'return confirm(\'آیا قصد دارید این سطر را حذف کنید؟\')'))."&nbsp;".anchor('menu/edit/'.$row->menu_id, '<i class="icon-pencil"></i>', array('class' => 'btn','tooltip'=>'Update'))."&nbsp;"."</td>";
+				echo "<td>".anchor('/menu/index/'.$row->menu_id ,'<i class="icon-remove"></i>', array('class' => 'btn','tooltip'=>'Delete','onclick'=>'return confirm(\'آیا قصد دارید این سطر را حذف کنید؟\')','rel'=>'tooltip','data-original-title'=>'حذف'))."&nbsp;".anchor('menu/edit/'.$row->menu_id, '<i class="icon-pencil"></i>', array('class' => 'btn','tooltip'=>'Update','rel'=>'tooltip','data-original-title'=>'بروزرسانی'))."&nbsp;"."</td>";
 				echo "<td>".$row->menu_name."</td>";
 				echo "<td>".$row->menu_url."</td>";
 				echo "<td>".$row->menu_section."</td>";

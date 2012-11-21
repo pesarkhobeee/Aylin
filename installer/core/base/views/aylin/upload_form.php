@@ -8,7 +8,7 @@
 <input type="hidden" name="roozbeh" value="<?php if($this->uri->segment(3) === FALSE){echo "0";}else{echo "1";}  ?>" />
 <br /><br />
 
-<input type="submit" value="upload" />
+<input class="btn btn-success" type="submit" value="upload" />
 
 </form>
 

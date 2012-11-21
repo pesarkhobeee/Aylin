@@ -70,7 +70,7 @@ if(isset($css_files) && isset($js_files)){
     </div>
 
     <div class="container">
-
+	<div style='min-height:700px;'> <!-- start of befor_footer -->
 	<?php
 	 
 		if($this->aylin->config("slide_show","config_links") == 1)

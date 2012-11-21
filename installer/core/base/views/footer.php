@@ -5,7 +5,10 @@
 if($this->aylin->config("widgets","config_site")==1)
  	include("widgets.php"); 
 ?>
-      <hr/>
+      <hr />
+
+
+</div><!-- end of befor_footer -->
 
       <footer>
         <p>&copy;&nbsp;<a href="http://www.mahestan.info/">Mahestan</a>&nbsp;2012 -&nbsp;Aylin 1.0
@@ -46,27 +49,15 @@ if($this->aylin->config("widgets","config_site")==1)
             /* ]]> */
     </script>
 <script>
-$('#myModal').modal('hide');
-$('#chang_owner').modal('hide');
+$(document).ready(function(){
+	$('#myModal').modal('hide');
+	$('#chang_owner').modal('hide');
 
         // carousel 
     $('#myCarousel').carousel();
+ });
 
 
- // tooltip demo
-    $('.tooltip-demo.well').tooltip({
-      selector: "a[rel=tooltip]"
-    })
-
-    $('.tooltip-test').tooltip()
-    $('.popover-test').popover()
-
-    // popover demo
-    $("a[rel=popover]")
-      .popover()
-      .click(function(e) {
-        e.preventDefault()
-      })
    </script>
 </body>
 </html>
