@@ -183,16 +183,16 @@ function replace_in_file($search_str,$replace_str,$file_address){
 }
 
 
-function GenerateKey($length = 16) {
-    $key = '';
 
-    for($i = 0; $i < $length; $i ++) {
-		$rand=mt_rand(33, 126);
-		if($rand==39)$rand--;
-        $key .= chr($rand);
-    }
+ function  GenerateKey($random_string_length = 16) {
+	
+	$characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+	 $string = '';
+	 for ($i = 0; $i < $random_string_length; $i++) {
+		  $string .= $characters[rand(0, strlen($characters) - 1)];
+	 }
 
-    return $key;
+	return $string;
 }
 
 ?> 

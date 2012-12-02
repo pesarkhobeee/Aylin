@@ -9,7 +9,7 @@ public function __construct()
            
             $this->aylin->login_check();
 					if(!$this->aylin->acl_check($this->uri->segment(1)))
-						redirect('/welcome/login', 'refresh');
+						redirect('/users/login', 'refresh');
 
        }
 	

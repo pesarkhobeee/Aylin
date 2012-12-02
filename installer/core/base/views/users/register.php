@@ -44,6 +44,11 @@
 	echo form_label('توضیحات  ', 'cd_description');
 	echo form_input('cd_description');
 	echo("</li><li>");
+	echo $image;
+	echo("</li><li>");
+	echo form_label('کد تصویر بالا را وارید کنید', 'captcha_word');
+	echo form_input('captcha_word');
+	echo("</li><li>");
 	echo("<input type='submit' value='ثبت' class='btn' />");
 	echo '<input type="hidden" name="cd_users_id" value="0" />';
 	echo("</li>");

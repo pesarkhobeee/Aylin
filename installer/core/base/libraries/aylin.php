@@ -41,9 +41,11 @@ class aylin{
 			$CI->db->where('username', $username);
 			$CI->db->where('password', md5($password));
 			$query= $CI->db->get();
-			if($query->num_rows()==1){
+            $row = $query->row();
+
+			if($query->num_rows()==1 && $row->active==1){
 				
-				$row = $query->row();
+				
 				$CI->load->library('session');
 				$newdata = array(
 					   'id'     => $row->id,
@@ -166,8 +168,8 @@ class aylin{
 		
 
         $CI->email->initialize($config);
-
-        $CI->email->from($CI->aylin->config("smtp_mail","config_mail"), $subject );
+	$CI->email->subject($subject);
+        $CI->email->from($CI->aylin->config("smtp_mail","config_mail") );
         
         if($send_mode=="normal")
         {
@@ -275,9 +277,9 @@ class aylin{
 
 
 	$slide='
-	<div style="height:400px;" class="span12">	
 		<div id="myCarousel" class="carousel slide">
             <div class="carousel-inner">
+				
 		';				
 				          
    		foreach ($query->result() as $row)
@@ -285,18 +287,18 @@ class aylin{
 			$slide.= "<div class='item'>
 			<a href='".$row->ll_url."'><img  src='".base_url("assets/uploads/files/") ."/".$row->ll_img_url."' /></a>
 			<div class='carousel-caption' style='direction:rtl;'>
-			<h4>".$row->ll_title."</h4>
+			<h5 style='color:#FFFFFF'>".$row->ll_title."</h5>
 			</div>
 			</div>";              
 		}
 		
 	$slide.='
             </div>
+            <div id="top_right_mask"></div>
             <!-- Carousel nav -->
 			<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
 			<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-        </div>		
-	</div>';
+        </div>		';
 
 	return $slide;
 	}	
@@ -318,7 +320,7 @@ class aylin{
 			$(document).ready(function(){
 				$("#submit_newsletter").click(function() {
 
-					var dataString =\'nm_name=\'+$("#nm_name").val()+\'nm_mail=\'+$("#nm_mail").val();
+					var dataString =\'nm_name=\'+$("#nm_name").val()+\'&nm_mail=\'+$("#nm_mail").val();
 
 					$.ajax({
 					      type: "POST",
@@ -379,5 +381,17 @@ class aylin{
 		}
 
 	}
+
+ function show_title_news()
+ {
+	  $CI =& get_instance();
+	  $CI->db->order_by("n_id", "desc"); 
+      $posts = $CI->db->get('news',10); 
+	  foreach($posts->result() as $post)
+	  {
+		echo "<li>".anchor('news/news_detail/' . $post->n_id,$post->n_title)."</li>";
+
+		}
+ }
 
 }

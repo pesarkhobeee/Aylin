@@ -30,25 +30,14 @@ class users extends CI_Controller {
 		
 	}
   
-       
-  public function auth($groupname=NULL){
-	       
-            $this->aylin->login_check();
-            if($groupname===NULL)
-            {
-				if(!$this->aylin->acl_check($this->uri->segment(1)))
-					redirect('/users/login', 'refresh');
-			}
-			else
-			{
-				if(!$this->aylin->acl_check($groupname))
-					redirect('/users/login', 'refresh');
-			}
-  }
 
 	public function show_user($user_id){
-	
-		$this->auth("users_root");
+		
+		$this->aylin->login_check();
+		if(!$this->aylin->acl_check("users"))
+			redirect('/users/login', 'refresh');
+						
+		
 		$this->db->select('*');
 		$this->db->from('customer_detail');
 		$this->db->join('users', 'customer_detail.cd_users_id = users.id'); 
@@ -67,7 +56,10 @@ class users extends CI_Controller {
 	}
 	
 	function customer_detail(){
-		$this->auth();
+		
+		$this->aylin->login_check();
+		if(!$this->aylin->acl_check("users"))
+			redirect('/users/login', 'refresh');
 		
 		if(isset($_POST["cd_name"])){
 			
@@ -102,9 +94,12 @@ class users extends CI_Controller {
 	}
 
 	function show_users(){
-	$this->auth();	
-	if($this->session->userdata('user_group')=="root")
-	{
+		
+	$this->aylin->login_check();
+	if(!$this->aylin->acl_check("users"))
+		redirect('/users/login', 'refresh');	
+		
+
 		if(isset($_POST["re_password"]))
 		{
 			if($_POST["re_password"]==$_POST["password"])
@@ -119,7 +114,9 @@ class users extends CI_Controller {
 				$data['alert'] = 'Password and Re Pasword do not match';
 			}
 		}
-		
+
+	if($this->session->userdata('user_group')=="root")
+	{		
 		if(isset($_POST["username"])){
 			$this->db->from('users');
 			$this->db->where('username', $_POST["username"]);
@@ -172,8 +169,11 @@ class users extends CI_Controller {
 	}
 
 	function groups(){
-	$this->auth("users_root");	
-
+	
+		$this->aylin->login_check();
+		if(!$this->aylin->acl_check("users_root"))
+			redirect('/users/login', 'refresh');
+			
 		if(isset($_POST["g_id"])){
 				$this->db->where('g_id', $_POST["g_id"]);
 				$this->db->update('users_groups', $_POST);
@@ -196,7 +196,10 @@ class users extends CI_Controller {
 	}
 	
 	function acl(){	
-	$this->auth("users_root");	
+	
+	$this->aylin->login_check();
+	if(!$this->aylin->acl_check("users_root"))
+		redirect('/users/login', 'refresh');	
 		
 		if(isset($_POST["id"])){
 				$this->db->where('id', $_POST["id"]);
@@ -243,6 +246,9 @@ public function register_active($id){
 public function register_finish(){
 	if($this->aylin->config("users_register","config_site")==1)
 	{
+
+if(strtolower($_POST["captcha_word"])==strtolower($this->session->userdata('captcha_word')))
+{
 		if(isset($_POST["username"]))
 		{
 			
@@ -256,7 +262,7 @@ public function register_finish(){
 				if($_POST["password"]==$_POST["re_password"])
 				{	
 					$_POST["password"]=md5($_POST["password"]);
-					$user=array("username"=>$_POST["username"],"password"=>$_POST["password"],"user_group"=>"user");
+					$user=array("username"=>$_POST["username"],"password"=>$_POST["password"],"user_group"=>"public");
 					if($this->db->insert('users', $user))
 					{
 						$data['massege'] = 'ثبت نام شما با موفقیت به پایان رسید';
@@ -264,6 +270,7 @@ public function register_finish(){
 						unset($_POST["username"]);
 						unset($_POST["password"]);
 						unset($_POST["re_password"]);
+						unset($_POST["captcha_word"]);
 						$_POST['cd_users_id'] = $this->db->insert_id();
 						if(!$this->db->insert('customer_detail', $_POST))
 						{
@@ -292,19 +299,36 @@ public function register_finish(){
 				$data['error'] = 'نام کاربری وارد شده قبلا ثبت شده است';
 			}
 		}
-		
+}
+else
+{
+				$data['error'] = 'کد تصویر وارد شده صحیح نمیباشد';
+}		
 		$this->load->view('header');
 		$this->load->view('users/register_finish',$data);
 		$this->load->view('footer');
 	}
+
 }
 	
 	public function register(){
 		if($this->aylin->config("users_register","config_site")==1)
 		{
+		$this->load->helper('captcha');
+		$vals = array(
+		    'img_path' => './assets/captcha/',
+		    'img_url' => base_url('/assets/captcha/')."/",
+		    'img_width' => '150',
+		    'img_height' => 30
+		    );
+
+		$cap = create_captcha($vals);
+		$this->session->set_userdata(array('captcha_word' => $cap['word']));
+			
+
 			$this->load->helper('form');
 			$this->load->view('header');
-			$this->load->view('users/register');
+			$this->load->view('users/register',$cap);
 			$this->load->view('footer');
 		}
 	}
@@ -318,23 +342,22 @@ public function register_finish(){
 			$this->load->view('footer');				
 	}
 	
-	private function  GenerateKey($length = 16) {
-		$key = '';
+	private function  GenerateKey($random_string_length = 16) {
+		
+		$characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+		 $string = '';
+		 for ($i = 0; $i < $random_string_length; $i++) {
+		      $string .= $characters[rand(0, strlen($characters) - 1)];
+		 }
 
-		for($i = 0; $i < $length; $i ++) {
-			$rand=mt_rand(33, 126);
-			if($rand==39)$rand--;
-			$key .= chr($rand);
-		}
-
-		return $key;
+		return $string;
 	}
 	
 	public function remember_password_submit()
 	{
 		
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+		$this->form_validation->set_rules('mail', 'Email', 'trim|required|valid_email');
 		if ($this->form_validation->run() == FALSE)
 		{
 			$data["alert"]="متاسفانه در روند بازیابی پسورد شما مشکلی پیش آمد، خواهشا با مدیر سایت تماس بگیرید";
@@ -342,7 +365,7 @@ public function register_finish(){
 		else
 		{
 			$random_str = $this->GenerateKey();
-			$to = $this->input->post("email");
+			$to = $this->input->post("mail");
 			$subject="بازیابی رمز عبور";
 			
 			$data = array(
@@ -352,7 +375,7 @@ public function register_finish(){
 
 			if($this->db->insert('users_remember_password', $data))
 			{
-				$content="<p>برای بازیابی رمز خود بر روی لینک زیر کلیک کنید<br><a href='".base_url("users/remember_password_action/".$random_str)."'>بازیابی رمز عبور</a></p>";
+				$content="<p>برای بازیابی رمز خود بر روی لینک زیر کلیک کنید<br><a href='".base_url("index.php/users/remember_password_action/".$random_str)."'>بازیابی رمز عبور</a></p>";
 				$this->aylin->send_mail($subject,$content,$to);
 				$data["msg"]="لطفا پست الکترونیکی خود را چک کنید";
 			}
@@ -370,32 +393,30 @@ public function register_finish(){
 			$this->load->view('footer');				
 	}	
 	
-	function remember_password_action($random_str="")
+	public function remember_password_action($random_str="")
 	{
-		if($random_str="")
+		if($random_str=="")
 			$data["alert"]="دسترسی مستقیم به این صفحه بی معنی است!";
 		
 		$random_str2 = $this->GenerateKey();
 		
 		$this->db->from("users_remember_password");
 		$this->db->where('urp_random_string', $random_str);
-		$query= $this->db->get();
-		if($query->num_rows()==1)
-		{	
-			$row = $query->row();
-			$to = $row->urp_emil; 
-		}
+		$query= $this->db->get();	
+		$row = $query->row();
+		$to = $row->urp_emil; 
+		
 		
 		
 		
 		$subject="رمز عبور جدید";
 		
-		$data = array('password' => $random_str2);	
+		$data = array('password' => md5($random_str2));	
 		$this->db->where('username', $to);
 
 		if($this->db->update('users', $data))
 		{
-			$content="<p>رمز عبور جدید</br>".$random_str2."</p>";
+			$content="<p><br>رمز عبور جدید<br>".$random_str2."</p>";
 			$this->aylin->send_mail($subject,$content,$to);
 			$data["msg"]="لطفا پست الکترونیکی خود را چک کنید";
 			$this->db->delete('users_remember_password', array('urp_emil' => $to));

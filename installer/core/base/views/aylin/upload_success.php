@@ -8,7 +8,7 @@
 <?php endforeach; ?>
 <li><a href="<?php echo base_url().'assets/uploads/'.$upload_data["file_name"]; ?>">Upload File</a></li>
 </ul>
-<p><?php echo anchor('aylin/upload', 'Upload Another File!'); ?></p>
+<p><?php echo anchor('aylin_base/upload', 'Upload Another File!'); ?></p>
 <?php }else{ ?>
 <img src='<?php echo base_url().'assets/uploads/'.$upload_data["file_name"]; ?>' />
 <script language="javascript">

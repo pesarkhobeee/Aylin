@@ -18,7 +18,7 @@
  <div style="text-align:center;">
  <?php
  echo form_open('users/remember_password_submit');
- echo '<ul id="remember_password">';
+ echo '<ul id="remember_password" style="list-style-type:none;">';
  echo '<li>'.form_label('پست الکترونیک خود را وارد کنید', 'mail').form_input(array("name"=>"mail","id"=>"mail"))."</li>";
  echo '<li>'.form_submit(array('class'=>'btn btn-primary'), 'بازیابی رمز عبور').'</li></ul>';
 echo form_close();
