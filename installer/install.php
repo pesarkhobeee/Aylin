@@ -95,6 +95,12 @@
 		import_db_file("../application/db.sql");
 		import_db_file("../application/data.sql");
 	}
+
+    if(isset($_POST["ajaxfilemanager"])){
+        extractor("./core/sub_systems/ajaxfilemanager.zip","../application/");
+  		smartCopy("../application/ajaxfilemanager/","../assets");
+		rrmdir('../application/ajaxfilemanager/');      
+    }   
 	
 	?>
 	

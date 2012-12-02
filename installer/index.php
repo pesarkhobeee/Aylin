@@ -176,6 +176,10 @@
 					<td><input type="checkbox" name="poll" value="poll"  checked="checked"/></td>
 					<td>سیستم نظرسنجی</td>
 				</tr>
+				<tr>
+					<td><input type="checkbox" name="ajaxfilemanager" value="ajaxfilemanager"  checked="checked"/></td>
+					<td>سیستم مدیریت فایل</td>
+				</tr>
 			</table>
 		</fieldset>
 		
