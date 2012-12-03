@@ -180,6 +180,10 @@
 					<td><input type="checkbox" name="ajaxfilemanager" value="ajaxfilemanager"  checked="checked"/></td>
 					<td>سیستم مدیریت فایل</td>
 				</tr>
+				<tr>
+					<td><input type="checkbox" name="message" value="message"  checked="checked"/></td>
+					<td>سیستم مدیریت پیغام ها</td>
+				</tr>
 			</table>
 		</fieldset>
 		

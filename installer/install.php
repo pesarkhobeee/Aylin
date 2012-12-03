@@ -102,6 +102,11 @@
 		rrmdir('../application/ajaxfilemanager/');      
     }   
 	
+	if(isset($_POST["message"])){
+		extractor("./core/sub_systems/message.zip","../application/");
+		import_db_file("../application/db.sql");
+		import_db_file("../application/data.sql");
+	}
 	?>
 	
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
