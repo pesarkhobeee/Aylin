@@ -262,7 +262,7 @@ if(strtolower($_POST["captcha_word"])==strtolower($this->session->userdata('capt
 				if($_POST["password"]==$_POST["re_password"])
 				{	
 					$_POST["password"]=md5($_POST["password"]);
-					$user=array("username"=>$_POST["username"],"password"=>$_POST["password"],"user_group"=>"public");
+					$user=array("username"=>$_POST["username"],"password"=>$_POST["password"],"user_group"=>"users");
 					if($this->db->insert('users', $user))
 					{
 						$data['massege'] = 'ثبت نام شما با موفقیت به پایان رسید';
