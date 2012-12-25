@@ -9,6 +9,38 @@
         <a data-dismiss='alert' class='close'>×</a>
          $alert</div>";}
 		?>	
+
+    <div class="modal fade" id="change_group">
+    	<div class="modal-header">
+    		<a class="close" data-dismiss="modal">×</a>
+   		 <h3 style="direction:rtl">تغییر گروه</h3>
+   	</div>
+    	<div class="modal-body">
+
+	<ul id="task">
+		<?php
+			echo form_open('users/show_users',array('id'=>'change_group_form'));
+			echo("<li>");
+			echo form_label('گروه  ', 'user_group');
+			foreach ($query_groups->result() as $groups)
+			{
+				echo $groups->g_name."&nbsp;";
+				echo form_radio('user_group', $groups->g_name);
+				echo "<br>";
+			}
+			echo "<input type='hidden' name='change_group_userid' id='change_group_userid' />";
+			echo("</li>");
+			echo form_close();
+		?>
+		</ul>
+
+  	</div>
+    <div class="modal-footer" style="direction:rtl">
+    	 <a href="#" onclick="document.getElementById('change_group_form').submit()" class="btn btn-primary">ثبت</a>
+   	 <a href="#" class="btn" data-dismiss="modal">بستن پنجره جاری</a>
+    </div>
+    </div>
+
 		
 		
 
@@ -107,7 +139,7 @@
 					$tmp = anchor('users/show_users/diactive/'.$row->id,"<i class='icon-ok-sign'></i>");
 				}
 				echo "<tr>";
-				echo "<td>".anchor('users/show_users/duser/'.$row->id, '<i class="icon-remove"></i>', array('class' => 'btn','tooltip'=>'Delete','rel'=>'tooltip','data-original-title'=>'حذف کاربر','onclick'=>'return confirm(\'آیا قصد دارید این سطر را حذف کنید؟\')'))."&nbsp;<a href='#update' class='btn' rel='tooltip' data-original-title='بروزرسانی کلمه عبور'  data-toggle='modal' onclick='document.getElementById(\"userid\").value=".$row->id."'><i class='icon-pencil' ></i></a>&nbsp;".anchor('users/show_user/'.$row->id, '<i class="icon-eye-open"></i>',array('class' => 'btn','rel'=>'tooltip','data-original-title'=>'اطلاعات تکمیلی','tooltip'=>'Show Detail'))."</td>";
+				echo "<td>".anchor('users/show_users/duser/'.$row->id, '<i class="icon-remove"></i>', array('class' => 'btn','tooltip'=>'Delete','rel'=>'tooltip','data-original-title'=>'حذف کاربر','onclick'=>'return confirm(\'آیا قصد دارید این سطر را حذف کنید؟\')'))."&nbsp;<a href='#update' class='btn' rel='tooltip' data-original-title='بروزرسانی کلمه عبور'  data-toggle='modal' onclick='document.getElementById(\"userid\").value=".$row->id."'><i class='icon-pencil' ></i></a>&nbsp;".anchor('users/show_user/'.$row->id, '<i class="icon-eye-open"></i>',array('class' => 'btn','rel'=>'tooltip','data-original-title'=>'اطلاعات تکمیلی','tooltip'=>'Show Detail'))."&nbsp;<a href='#change_group' class='btn' rel='tooltip' data-original-title='تغییر گروه کاربری'  data-toggle='modal' onclick='document.getElementById(\"change_group_userid\").value=".$row->id."'><i class='icon-lock' ></i></a>&nbsp;"."</td>";
 				echo "<td>".$row->username."</td>";
 				echo "<td>".$row->user_group."</td>";
 				echo "<td>".$tmp."</td>";

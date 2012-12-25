@@ -131,6 +131,11 @@ class users extends CI_Controller {
 			{
 				$data['alert'] = 'نام کاربری وارد شده قبلا ثبت شده است';
 			}
+		}elseif(isset($_POST["change_group_userid"])){
+			$this->db->where('id', $_POST["change_group_userid"]);
+			unset($_POST["change_group_userid"]);
+			$this->db->update('users', $_POST); 
+			$data['massege'] = 'Group was updated';
 		}
 		
 		
