@@ -51,6 +51,10 @@
 				<td><input type="text" name="title" /></td>		
 			</tr>
 			<tr>
+				<td>توضیح</td>
+				<td><input type="text" name="description" /></td>		
+			</tr>
+			<tr>
 				<td>فعال سازی ثبت نام کاربران</td>
 				<td>
 					بله <input type="radio" value="1" name="users_register">

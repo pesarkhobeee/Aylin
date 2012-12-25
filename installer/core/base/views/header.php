@@ -4,13 +4,14 @@
     <meta charset="utf-8">
     <title><?php echo $this->aylin->config("title","config_site"); ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
     <meta name="author" content="">
-
-    <!-- Le styles -->
-
-	
-
+	<meta name="description" content="<?php echo $this->aylin->config("description","config_site"); ?>">	
+	<?php 
+	if(isset($meta))
+	{
+		echo $meta;
+	}
+	?>
    	
     <style type="text/css">
       body {

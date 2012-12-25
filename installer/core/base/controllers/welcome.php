@@ -22,8 +22,12 @@ class Welcome extends CI_Controller {
 	public function index($pagename="Home"){
 		$this->db->where('content_title', $pagename);
 		$data["contents"]= $this->db->get('content');
-
-			$this->load->view('header');
+		$key="";
+		foreach($data["contents"]->result() as $tmp){
+			$key .= $tmp->content_tag;
+		}
+			$header["meta"] = "<meta name='keywords' content='".$key."' >";
+			$this->load->view('header',$header);
 			$this->load->view('welcome/show',$data);
 			$this->load->view('footer');	
 		

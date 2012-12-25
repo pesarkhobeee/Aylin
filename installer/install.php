@@ -42,6 +42,8 @@
 		auto_generate_insert("meta_data",$db_data);
 		$db_data=array("name"=>"title","value"=>$_POST["title"],"group"=>"config_site");
 		auto_generate_insert("meta_data",$db_data);
+		$db_data=array("name"=>"description","value"=>$_POST["description"],"group"=>"config_site");
+		auto_generate_insert("meta_data",$db_data);
 		$db_data=array("name"=>"smtp_host","value"=>$_POST["smtp_host"],"group"=>"config_mail");
 		auto_generate_insert("meta_data",$db_data);
 		$db_data=array("name"=>"smtp_port","value"=>$_POST["smtp_port"],"group"=>"config_mail");
