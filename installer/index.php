@@ -47,6 +47,10 @@
     <legend>گام اول</legend>
 		<table class="table table-striped">
 			<tr>
+				<td>پست الکترونیکی مدیر که به عنوان نام کاربری استفاده خواهد شد</td>
+				<td><input type="text" name="username" /></td>		
+			</tr>
+			<tr>
 				<td>عنوان سایت</td>
 				<td><input type="text" name="title" /></td>		
 			</tr>

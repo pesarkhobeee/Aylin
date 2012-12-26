@@ -36,6 +36,7 @@
 		import_db_file("../application/data.sql");
 		replace_in_file("['libraries'] = array('database', 'session');","['libraries'] = array('database', 'session','aylin');","../application/config/autoload.php");
 		replace_in_file('$config[\'global_xss_filtering\'] = FALSE;','$config[\'global_xss_filtering\'] = TRUE;',"../application/config/config.php");
+		replace_in_file('$config[\'sess_expire_on_close\]	= FALSE;','$config[\'sess_expire_on_close\']	= True;',"../application/config/config.php");
 		replace_in_file('$config[\'sess_use_database\']	= FALSE;','$config[\'sess_use_database\']	= TRUE;',"../application/config/config.php");
 		replace_in_file("<?php","<?php ini_set('date.timezone', 'Asia/tehran');","../index.php");
 		$db_data=array("name"=>"users_register","value"=>$_POST["users_register"],"group"=>"config_site");
@@ -56,6 +57,8 @@
 		auto_generate_insert("meta_data",$db_data);
 		$db_data=array("name"=>"widgets","value"=>$_POST["widgets"],"group"=>"config_site");
 		auto_generate_insert("meta_data",$db_data);
+		$db_data=array("id"=>7, "username"=>$_POST["username"],"password"=>"21232f297a57a5a743894a0e4a801fc3","user_group"=>"root","active"=>1);
+		auto_generate_insert("users",$db_data);
 	}
 	
 	if(isset($_POST["roozbeh"])){
@@ -136,7 +139,9 @@
 		<strong>تبریک میگوییم</strong>
 		نصب آیلین با موفقیت به پایان رسید.
 		<br>
-		نام کاربری و کلمه عبور پیش فرض admin است 
+		نام کاربری
+		  <?php echo $_POST["username"]; ?> 
+		 و کلمه عبور پیش فرض admin است 
 	</div>
 	<div class="fade in alert alert-error">
 		<a class="close" data-dismiss="alert">×</a>

@@ -32,13 +32,6 @@ INSERT INTO `content` (`content_id`, `content_title`, `content_text`, `content_t
 
 
 
---
--- Dumping data for table `users`
---
-
-
-INSERT INTO `users` VALUES (7, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'root',1);
-
 
 --
 -- Dumping data for table `users_groups`
