@@ -393,5 +393,79 @@ class aylin{
 
 		}
  }
+ 
+
+
+function visitor_counter()
+{
+		$today = date("Y-m-d");
+
+		$CI =& get_instance();
+		$CI->load->library('session');
+		
+		if($CI->session->userdata('site_visit')=="")
+		{
+		
+			$CI->load->database();
+			$CI->db->from('meta_data');
+			$CI->db->where('group', 'site_visit');
+			$CI->db->where('name', $today);
+			$query= $CI->db->get();
+			
+		 
+			if($query->num_rows()!=0)
+			{	
+				$row = $query->row();
+				$new_value = $row->value + 1;
+				$CI->db->where('id', $row->id);
+				$CI->db->update('meta_data', array('value' => $new_value)); 
+			}
+			else
+			{
+				$data = array(
+				   'name' => $today ,
+				   'value' => 1 ,
+				   'group' => 'site_visit'
+				);
+
+				$CI->db->insert('meta_data', $data); 
+			}
+			
+			$newdata = array(
+				   'site_visit'     => "yes"
+			   );
+			$CI->session->set_userdata($newdata);	
+			
+		}
+		
+}
+
+
+function visitor_show($date=Null)
+{
+	$CI =& get_instance();
+	$CI->load->database();
+	if(isset($date))
+	{	
+		
+		$CI->db->where('group', 'site_visit');
+		$CI->db->where('name', $date);
+		$query= $CI->db->get("meta_data");
+		if($query->num_rows()!=0)
+		{	
+			$row = $query->row();
+			return $row->value;
+		}else{
+			return 0;
+		}
+	}else{
+		$CI->db->select_sum('value');
+		$CI->db->where('group', 'site_visit');
+		$query = $CI->db->get('meta_data');
+		$row = $query->row();
+		return $row->value;
+	}
+	
+}
 
 }

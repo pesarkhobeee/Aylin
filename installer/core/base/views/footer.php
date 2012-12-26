@@ -13,7 +13,10 @@ if($this->aylin->config("widgets","config_site")==1)
       <footer>
         <p>&copy;&nbsp;<a href="http://www.mahestan.info/">Mahestan</a>&nbsp;2012 -&nbsp;Aylin 1.0
 </p>
-        <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
+        <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds
+        <br>
+        Today Visitor Count : <?php  echo $this->aylin->visitor_show(date("Y-m-d")); ?> , Total Visitor : <?php  echo $this->aylin->visitor_show(); ?>
+        </p>
       </footer>
 
     </div> <!-- /container -->
