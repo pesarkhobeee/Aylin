@@ -20,9 +20,11 @@ class Welcome extends CI_Controller {
 	 
 	  
 	public function index($pagename="Home"){
+		if($pagename!="Home")
+		{
 		$this->db->where('content_title', $pagename);
 		$data["contents"]= $this->db->get('content');
-		$key="";
+        $key="";
 		foreach($data["contents"]->result() as $tmp){
 			$key .= $tmp->content_tag;
 		}
@@ -30,6 +32,13 @@ class Welcome extends CI_Controller {
 			$this->load->view('header',$header);
 			$this->load->view('welcome/show',$data);
 			$this->load->view('footer');	
+		}else{
+			$this->load->view('header');
+			$this->load->view('welcome/homepage');
+			$this->load->view('footer');	
+		
+
+		}	
 		
 	}
 	
