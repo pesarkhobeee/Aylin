@@ -7,13 +7,15 @@ class Aylin_base extends CI_Controller {
 	            parent::__construct();
 	            // Your own constructor code
 	            $this->load->helper(array('form', 'url'));
-	           
-	            $this->aylin->login_check();
-						if(!$this->aylin->acl_check($this->uri->segment(1)))
-							redirect('/users/login', 'refresh');
+	     
 	}
 
 	public function config(){
+
+		$this->aylin->login_check();
+		if(!$this->aylin->acl_check($this->uri->segment(1)))
+			redirect('/users/login', 'refresh');
+		
 		$key=true;
 		if(isset($_POST["group"])){
 			for($i=0;$i<count($_POST["group"]);$i++)
@@ -55,16 +57,27 @@ class Aylin_base extends CI_Controller {
 	}
 	
 	
-		function upload()
+	function upload()
 	{
+		
+		$this->aylin->login_check();
+		if(!$this->aylin->acl_check($this->uri->segment(1)))
+			redirect('/users/login', 'refresh');
+		
 		$this->load->view('admin_them/header');
 		$this->load->view('aylin/upload_form', array('error' => ' ' ));
 		$this->load->view('admin_them/footer');
 	}
 	
 	
-		function do_upload()
+	function do_upload()
 	{
+
+		$this->aylin->login_check();
+		if(!$this->aylin->acl_check($this->uri->segment(1)))
+			redirect('/users/login', 'refresh');
+		
+		
 		$config['upload_path'] = './assets/uploads/';
 		$config['allowed_types'] = 'gif|jpg|png|pdf|zip';
 		//$config['max_size']	= '100';
@@ -89,46 +102,108 @@ class Aylin_base extends CI_Controller {
 		}
 	}
 
-	public function send_mail($subject , $content , $to)
-	{
-		
-
-    
-  
-		
-    	$this->load->library('email');
-    	$this->load->helper('file');
-	$string = read_file('./assets/others/signature.html');
-	$content.="<br><br>".$string;
 	
-        $config['protocol']    = 'smtp';
-        $config['smtp_host']    = $this->aylin->config("smtp_host","config_mail");
-        $config['smtp_port']    = $this->aylin->config("smtp_port","config_mail");
-        $config['smtp_timeout'] = '7';
-        $config['smtp_user']    = $this->aylin->config("smtp_user","config_mail");
-        $config['smtp_pass']    = $this->aylin->config("smtp_pass","config_mail");
-        $config['charset']    = 'utf-8';
-        $config['newline']    = "\r\n";
-        $config['mailtype'] = 'html'; // or html
-        $config['validation'] = TRUE; // bool whether to validate email or not      
+/* backup the db OR just a table */
+function _backup_tables($tables = '*')
+{
+	$this->aylin->login_check();
+		if(!$this->aylin->acl_check($this->uri->segment(1)))
+			redirect('/users/login', 'refresh');
 
-        $this->email->initialize($config);
+  $link = mysql_connect($this->db->hostname,$this->db->username,$this->db->password);
+  mysql_select_db($this->db->database,$link);
+   //mysql_set_charset("charset=utf8");  
+    mysql_query("SET NAMES 'utf8'");
+    mysql_query("SET CHARACTER SET utf8");
+    mysql_query("SET COLLATION_CONNECTION = 'utf8_unicode_ci'");
 
-        $this->email->from($this->aylin->config("smtp_mail","config_mail"), $subject );
-        $this->email->to($to); 
+  //get all of the tables
+  if($tables == '*')
+  {
+    $tables = array();
+    $result = mysql_query('SHOW TABLES');
+    while($row = mysql_fetch_row($result))
+    {
+      $tables[] = $row[0];
+    }
+  }
+  else
+  {
+    $tables = is_array($tables) ? $tables : explode(',',$tables);
+  }
+  
+  //cycle through
+  $return="";
+  foreach($tables as $table)
+  {
+    $result = mysql_query('SELECT * FROM '.$table);
+    $num_fields = mysql_num_fields($result);
+    
+    
+    $return.= 'DROP TABLE '.$table.';';
+    $row2 = mysql_fetch_row(mysql_query('SHOW CREATE TABLE '.$table));
+    $return.= "\n\n".$row2[1].";\n\n";
+    
+    for ($i = 0; $i < $num_fields; $i++) 
+    {
+      while($row = mysql_fetch_row($result))
+      {
+        $return.= 'INSERT INTO '.$table.' VALUES(';
+        for($j=0; $j<$num_fields; $j++) 
+        {
+          $row[$j] = addslashes($row[$j]);
+          $row[$j] = preg_replace("#\n#", "\\n", $row[$j]);
+          if (isset($row[$j])) { $return.= '"'.$row[$j].'"' ; } else { $return.= '""'; }
+          if ($j<($num_fields-1)) { $return.= ','; }
+        }
+        $return.= ");\n";
+      }
+    }
+    $return.="\n\n\n";
+  }
+  
+  
+  
+  return $return;
 
-        $this->email->subject('ContactUs');
-        $this->email->message($content);  
+		
+}
 
-        if($this->email->send())
-			return true;
-		else
-			return false;
-
-       //echo $this->email->print_debugger();
-
-
+	public function backup_dl(){
+		
+		$this->aylin->login_check();
+		if(!$this->aylin->acl_check($this->uri->segment(1)))
+			redirect('/users/login', 'refresh');
+		
+		
+		header("Content-type: application/octet-stream");
+		header('Content-Disposition: attachment; filename='.'db-backup-'.date("Y-m-d_H:i:s").'.sql');
+		echo $this->_backup_tables();
 	}
+	
+	public function backup_mail()
+	{
+		$this->load->helper('file');
+		
+		$filename = "./assets/backup/".'db-backup-'.date("Y-m-d_H:i:s").'.sql';
+		$attechment = $this->_backup_tables();
+		
+		write_file($filename,$attechment);
+		
+		
+		$content ="<p style='direction:rtl'>";
+		$content .= "Backup UP :" . $filename;
+		$content .="</p>";
+		
+
+		$to = $this->aylin->config("backup_mail","config_mail");
+		
+		$this->aylin->send_mail("پشتیبان گیری خودکار",$content,$to,"normal",$filename);
+		
+		delete_files("./assets/backup/");
+		
+	}
+
 	
 }
 

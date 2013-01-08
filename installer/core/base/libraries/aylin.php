@@ -143,7 +143,7 @@ class aylin{
 	}
 	
 	
-	public function send_mail($subject , $content , $to ,$send_mode="normal")
+	public function send_mail($subject , $content , $to ,$send_mode="normal",$attachment = NULL)
 	{
 
   $CI =& get_instance();
@@ -183,6 +183,11 @@ class aylin{
 
         $CI->email->subject($subject );
         $CI->email->message($content);  
+
+
+		if($attachment !== NULL)
+			$CI->email->attach($attachment);
+
 
         if($CI->email->send())
 			return true;

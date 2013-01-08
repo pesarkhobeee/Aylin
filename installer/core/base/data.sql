@@ -21,7 +21,8 @@ INSERT INTO `menu` (`menu_id`, `menu_name`, `menu_url`, `menu_section`, `parent`
 (4, 'ACL', 'users/acl', 'root', 1),
 (5, 'منوها', 'menu/index', 'root', 1),
 (6, 'محتوا', '#', 'root', NULL),
-(7, 'آپلود', 'aylin_base/upload', 'root', 6);
+(7, 'آپلود', 'aylin_base/upload', 'root', 6),
+(0, 'پشتیبان گیری', 'aylin_base/backup_dl', 'root', 6);
 
 --
 -- Dumping data for table `content`
@@ -38,3 +39,4 @@ INSERT INTO `content` (`content_id`, `content_title`, `content_text`, `content_t
 --
 INSERT INTO `users_groups` VALUES (0,'root');
 INSERT INTO `users_groups` VALUES (0,'users');
+INSERT INTO `users_groups` VALUES (0,'public');

@@ -55,6 +55,8 @@
 		auto_generate_insert("meta_data",$db_data);
 		$db_data=array("name"=>"smtp_mail","value"=>$_POST["smtp_mail"],"group"=>"config_mail");
 		auto_generate_insert("meta_data",$db_data);
+		$db_data=array("name"=>"backup_mail","value"=>$_POST["backup_mail"],"group"=>"config_mail");
+		auto_generate_insert("meta_data",$db_data);
 		$db_data=array("name"=>"widgets","value"=>$_POST["widgets"],"group"=>"config_site");
 		auto_generate_insert("meta_data",$db_data);
 		$db_data=array("id"=>7, "username"=>$_POST["username"],"password"=>"21232f297a57a5a743894a0e4a801fc3","user_group"=>"root","active"=>1);

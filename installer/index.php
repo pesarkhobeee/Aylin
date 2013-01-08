@@ -104,6 +104,10 @@
 			<tr>
 				<td>smtp Defualt Emil Address</td>
 				<td><input type="text" name="smtp_mail" /></td>		
+			</tr>
+			<tr>
+				<td>Backup Emil Address</td>
+				<td><input type="text" name="backup_mail" /></td>		
 			</tr>					
 		</table>
 	</fieldset>
