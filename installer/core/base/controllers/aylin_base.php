@@ -102,93 +102,45 @@ class Aylin_base extends CI_Controller {
 		}
 	}
 
-	
-/* backup the db OR just a table */
-function _backup_tables($tables = '*')
-{
-	$this->aylin->login_check();
-		if(!$this->aylin->acl_check($this->uri->segment(1)))
-			redirect('/users/login', 'refresh');
 
-  $link = mysql_connect($this->db->hostname,$this->db->username,$this->db->password);
-  mysql_select_db($this->db->database,$link);
-   //mysql_set_charset("charset=utf8");  
-    mysql_query("SET NAMES 'utf8'");
-    mysql_query("SET CHARACTER SET utf8");
-    mysql_query("SET COLLATION_CONNECTION = 'utf8_unicode_ci'");
-
-  //get all of the tables
-  if($tables == '*')
-  {
-    $tables = array();
-    $result = mysql_query('SHOW TABLES');
-    while($row = mysql_fetch_row($result))
-    {
-      $tables[] = $row[0];
-    }
-  }
-  else
-  {
-    $tables = is_array($tables) ? $tables : explode(',',$tables);
-  }
-  
-  //cycle through
-  $return="";
-  foreach($tables as $table)
-  {
-    $result = mysql_query('SELECT * FROM '.$table);
-    $num_fields = mysql_num_fields($result);
-    
-    
-    $return.= 'DROP TABLE '.$table.';';
-    $row2 = mysql_fetch_row(mysql_query('SHOW CREATE TABLE '.$table));
-    $return.= "\n\n".$row2[1].";\n\n";
-    
-    for ($i = 0; $i < $num_fields; $i++) 
-    {
-      while($row = mysql_fetch_row($result))
-      {
-        $return.= 'INSERT INTO '.$table.' VALUES(';
-        for($j=0; $j<$num_fields; $j++) 
-        {
-          $row[$j] = addslashes($row[$j]);
-          $row[$j] = preg_replace("#\n#", "\\n", $row[$j]);
-          if (isset($row[$j])) { $return.= '"'.$row[$j].'"' ; } else { $return.= '""'; }
-          if ($j<($num_fields-1)) { $return.= ','; }
-        }
-        $return.= ");\n";
-      }
-    }
-    $return.="\n\n\n";
-  }
-  
-  
-  
-  return $return;
-
-		
-}
 
 	public function backup_dl(){
 		
 		$this->aylin->login_check();
 		if(!$this->aylin->acl_check($this->uri->segment(1)))
 			redirect('/users/login', 'refresh');
+	
+		$filename = "./assets/backup/".date("Y-m-d_H:i:s").'.gz';
 		
-		
-		header("Content-type: application/octet-stream");
-		header('Content-Disposition: attachment; filename='.'db-backup-'.date("Y-m-d_H:i:s").'.sql');
-		echo $this->_backup_tables();
+		// Load the DB utility class
+		$this->load->dbutil();
+
+		// Backup your entire database and assign it to a variable
+		$backup =& $this->dbutil->backup();
+
+		// Load the file helper and write the file to your server
+		$this->load->helper('file');
+		write_file($filename, $backup);
+
+		// Load the download helper and send the file to your desktop
+		$this->load->helper('download');
+		force_download($filename, $backup); 
 	}
 	
 	public function backup_mail()
 	{
+		$filename = "./assets/backup/".date("Y-m-d_H:i:s").'.gz';
+		
+		// Load the DB utility class
+		$this->load->dbutil();
+
+		// Backup your entire database and assign it to a variable
+		$backup =& $this->dbutil->backup();
+
+		// Load the file helper and write the file to your server
 		$this->load->helper('file');
-		
-		$filename = "./assets/backup/".'db-backup-'.date("Y-m-d_H:i:s").'.sql';
-		$attechment = $this->_backup_tables();
-		
-		write_file($filename,$attechment);
+		write_file($filename, $backup);
+
 		
 		
 		$content ="<p style='direction:rtl'>";
@@ -203,6 +155,8 @@ function _backup_tables($tables = '*')
 		delete_files("./assets/backup/");
 		
 	}
+	
+	
 
 	
 }
