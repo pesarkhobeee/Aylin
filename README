@@ -13,7 +13,5 @@ change owner of source to webserver user, for example:
     chown -R www-data:www-data aylin/
 and run install folder inside of AylinCMS in web browser
 
-TODO
-====================
-add dashboard for login users
+
 

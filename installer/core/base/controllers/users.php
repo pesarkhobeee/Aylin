@@ -18,7 +18,7 @@ class users extends CI_Controller {
 		
 		if(isset($_POST["username"])){
 				if($this->aylin->login($_POST["username"],$_POST["password"])){
-					redirect('/users/show_users', 'refresh');
+					redirect('/users/dashboard', 'refresh');
 				}else{
 					$data["msg"]="Username Or Password is Wrong";
 				}
@@ -442,7 +442,19 @@ else
 	
 	function logout(){
 		$this->session->sess_destroy();
-		redirect('/welcome/login/', 'refresh');
+		redirect('/users/login/', 'refresh');
+	}
+	
+	function dashboard()
+	{
+		
+		$this->aylin->login_check();
+		if(!$this->aylin->acl_check("users_root"))
+			redirect('/users/login', 'refresh');
+		
+		$this->load->view('admin_them/header');
+		$this->load->view('/users/dashboard');
+		$this->load->view('admin_them/footer');
 	}
 
 }

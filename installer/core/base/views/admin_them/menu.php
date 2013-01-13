@@ -29,7 +29,7 @@
 		$str =  preg_replace('/class="child"/','class="nav"',$str,1);
 		echo $str;
 	?>
-	<li><?php echo anchor("welcome/login", 'ورود ', 'title=login'); ?></li> 
+	<li><?php echo anchor("users/login", 'ورود ', 'title=login'); ?></li> 
 	<?php
 	}
 	?>

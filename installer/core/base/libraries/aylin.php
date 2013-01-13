@@ -6,7 +6,7 @@ class aylin{
 		$CI =& get_instance();
 		$CI->load->library('session');
 		if($CI->session->userdata('user_group')==""){
-			redirect('/welcome/login', 'refresh');
+			redirect('/users/login', 'refresh');
 		}
 	}
 		

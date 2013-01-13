@@ -41,61 +41,6 @@ class Welcome extends CI_Controller {
 		}	
 		
 	}
-	
-	
-	
-	public function publicuser(){
-		$this->load->view('header');
-		$this->load->view('public_page');
-		$this->load->view('footer');	
-	}
-	
-	function login(){
-		$this->load->helper('form');
-		$data["msg"]="";
-		
-		if(isset($_POST["username"])){
-				if($this->aylin->login($_POST["username"],$_POST["password"])){
-					redirect('/users/show_users', 'refresh');
-				}else{
-					$data["msg"]="Username Or Password is Wrong";
-				}
-		}
-		
-		$this->load->view('admin_them/header');
-		$this->load->view('admin_them/login',$data);
-		$this->load->view('admin_them/footer');
-		
-	}
-	
-
-
-    function send_contact()
-    {
-
-		if($_POST["6_letters_code"]=="10")
-		{
-			$content="";
-			unset($_POST["6_letters_code"]);
-			unset($_POST["submit"]);
-			foreach($_POST as $item=>$val)
-			{
-				$content.="<fieldset>
-				<legend>$item</legend>$val</fieldset>";
-			}
-			$data["msg"]="کاربر گرامی پیغام شما با موفقیت ارسال گردید";
-		}
-		else
-		{
-			$data["msg"]="شما پاسخ اشتباه به سوال امنیتی داده اید. خواهشا دوباره سعی کنید";
-		}
-		
-		$this->load->view('header');
-		 $this->load->view('contactus',$data);
-		$this->load->view('footer');
-      
-       
-    }
 }
 
 	
