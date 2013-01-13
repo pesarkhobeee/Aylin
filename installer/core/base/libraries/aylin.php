@@ -259,6 +259,7 @@ class aylin{
 			$CI->db->where("lg_name",$group);
 			
 		$CI->db->where("lg_name !=","slide");
+		$CI->db->where("lg_name !=","dashboard");
 		$query = $CI->db->get("links_logo");
 		
 		$links="<ul class='$class' >";
