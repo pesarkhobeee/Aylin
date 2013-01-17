@@ -322,6 +322,7 @@ else
 		$this->load->helper('captcha');
 		$vals = array(
 		    'img_path' => './assets/captcha/',
+		    'font_path' => './assets/fonts/AllerDisplay.ttf',
 		    'img_url' => base_url('/assets/captcha/')."/",
 		    'img_width' => '150',
 		    'img_height' => 30
@@ -449,7 +450,7 @@ else
 	{
 		
 		$this->aylin->login_check();
-		if(!$this->aylin->acl_check("users_root"))
+		if(!$this->aylin->acl_check($this->uri->segment(1)))
 			redirect('/users/login', 'refresh');
 		
 		$this->load->view('admin_them/header');

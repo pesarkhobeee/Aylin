@@ -1,3 +1,31 @@
+/*=== Custom Fonts ===*/
+    
+    
+@font-face 
+{
+	font-family: "Iranian Sans";
+	src: url("fonts/irsans.ttf");
+}
+
+@font-face 
+{
+	font-family: "Droid Arabic Naskh";
+	src: url("fonts/DroidNaskh-Regular.ttf");
+}
+
+@font-face 
+{
+	font-family: "Droid Arabic Naskh";
+	font-weight: bold;
+	src: url("fonts/DroidNaskh-Bold.ttf");
+}
+
+body 
+{
+	font-family: "Droid Arabic Naskh", "Iranian Sans", Tahoma, "DejaVu Sans", Arial ;
+	font-size:12px;
+}
+
 #main_content {
     min-height: 500px;
 }
@@ -282,3 +310,7 @@
 	
 }
 
+.help-inline
+{
+	color:#EA1515;
+}

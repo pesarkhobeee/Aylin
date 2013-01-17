@@ -392,12 +392,22 @@ class aylin{
  {
 	  $CI =& get_instance();
 	  $CI->db->order_by("n_id", "desc"); 
-      $posts = $CI->db->get('news',10); 
+      $posts = $CI->db->get('news',3);
+      $table="";
+      $table="<table align='center' cellpadding='5'>";
 	  foreach($posts->result() as $post)
 	  {
-		echo "<li>".anchor('news/news_detail/' . $post->n_id,$post->n_title)."</li>";
+
+        $path_parts = pathinfo($post->n_identity_img);
+		$table.= "<tr>";
+        $table.= "<td rowspan='2'><img  src='".base_url("/assets/uploads/files/")."/".$path_parts["filename"]."_thumb.".$path_parts["extension"]."' /></td>";
+        $table.= "<td>".$this->jalali_date($post->n_create_date)."</td>";   
+        $table.= "</tr>";
+        $table.="<tr><td>".anchor('news/news_detail/' . $post->n_id,$post->n_title,array("class"=>"white_fonts"))."</td></tr>";
 
 		}
+       $table.="</table>";
+       echo $table;
  }
  
 
@@ -473,5 +483,19 @@ function visitor_show($date=Null)
 	}
 	
 }
+
+	function jalali_date($value)
+	{	 
+		$CI =& get_instance();
+		if(isset($value))
+		{
+			$CI->load->library('JalaliCalendar');   
+			$gdate=explode(" ",$value);
+			list($gyear,$gmonth,$gday)=preg_split('/-/',$gdate[0]);
+			list($jyear,$jmonth,$jday) = $CI->jalalicalendar->gregorian_to_jalali($gyear,$gmonth,$gday);
+			$jdate=$jyear."-".$jmonth."-".$jday;  
+			return $gdate[1]." ".$jdate;
+		}
+	}
 
 }

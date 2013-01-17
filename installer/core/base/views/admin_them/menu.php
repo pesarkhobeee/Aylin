@@ -18,7 +18,7 @@
 
 	
 	if($this->session->userdata('user_group')){
-		
+		echo '<li>'.anchor("users/dashboard", "داشبورد").'</li>';
 		$str = $this->aylin->get_menu_list($this->session->userdata('user_group'),$uri_arr);	
 		$str =  preg_replace('/class="child"/','class="nav"',$str,1);
 		echo $str;
