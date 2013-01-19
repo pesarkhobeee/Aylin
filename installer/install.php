@@ -18,7 +18,7 @@
 	}
 
 	if(isset($_POST["grocery"])){
-		extractor("./core/grocery_CRUD-1.3.2.zip","../");
+		extractor("./core/grocery_CRUD-1.3.3.zip","../");
 		replace_in_file('$config[\'grocery_crud_default_language\']	= \'english\';','$config[\'grocery_crud_default_language\']	= \'persian\';',"../application/config/grocery_crud.php");
 	}
 

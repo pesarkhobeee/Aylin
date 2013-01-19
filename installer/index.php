@@ -146,7 +146,7 @@
 			<tr>
 				<td><input type="checkbox" name="grocery" value="grocery" checked="checked" /></td>
 				<td><img src="assets/grocery.png" /></td>	
-				<td>Grocery CRUD 1.3.2</td>
+				<td>Grocery CRUD 1.3.3</td>
 			</tr>
 			<tr>
 				<td><input type="checkbox" name="bootstrap" value="bootstrap" checked="checked" /></td>
