@@ -2,7 +2,7 @@
 /*
  * index.php
  * 
- * Copyright 2012 zanjanhost <info@zanjanhost.com>
+ * Copyright 2012 zanjanhost <ahmadian.farid@yahoo.com>
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -158,16 +158,15 @@
 				<td><img src="assets/aylin.jpg" /></td>
 				<td>Aylin</td>
 			</tr>
-			<tr>
-				<td><input type="checkbox" name="roozbeh" value="roozbeh"  /></td>
-				<td><img src="assets/roozbeh.jpg" /></td>
-				<td>Roozbeh</td>
-			</tr>
 		</table>
 		</fieldset>
 		<fieldset>
 		<legend>گام چهارم</legend>
 			<table class="table table-striped">
+				<tr>
+					<td><input type="checkbox" name="db_crud" value="db_crud"  /></td>
+					<td>مدیریت اتوماتیک داده های جداول</td>
+				</tr>
 				<tr>
 					<td><input type="checkbox" name="content" value="content"  checked="checked"/></td>
 					<td> سیستم مدیریت محتوا بهمراه CKEditor 3.6.2</td>

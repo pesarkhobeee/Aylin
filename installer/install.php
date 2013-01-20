@@ -63,13 +63,13 @@
 		auto_generate_insert("users",$db_data);
 	}
 	
-	if(isset($_POST["roozbeh"])){
-		extractor("./core/roozbeh.zip","../application/");
-		smartCopy("../application/assets/","../assets");
-		rrmdir('../application/assets/');
+	
+	if(isset($_POST["db_crud"])){
+		extractor("./core/sub_systems/db_crud.zip","../application/");
 		import_db_file("../application/db.sql");
 		import_db_file("../application/data.sql");
 	}
+		
 	
 	if(isset($_POST["content"])){
 		extractor("./core/sub_systems/content.zip","../application/");
