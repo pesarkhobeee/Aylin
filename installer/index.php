@@ -195,6 +195,10 @@
 					<td><input type="checkbox" name="message" value="message"  checked="checked"/></td>
 					<td>سیستم مدیریت پیغام ها</td>
 				</tr>
+				<tr>
+					<td><input type="checkbox" name="gallery" value="gallery"  checked="checked"/></td>
+					<td>گالری تصاویر</td>
+				</tr>
 			</table>
 		</fieldset>
 		
