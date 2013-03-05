@@ -35,7 +35,7 @@
 		import_db_file("../application/db.sql");
 		import_db_file("../application/data.sql");
 		replace_in_file("['libraries'] = array('database', 'session');","['libraries'] = array('database', 'session','aylin');","../application/config/autoload.php");
-		replace_in_file('$config[\'global_xss_filtering\'] = FALSE;','$config[\'global_xss_filtering\'] = TRUE;',"../application/config/config.php");
+		//replace_in_file('$config[\'global_xss_filtering\'] = FALSE;','$config[\'global_xss_filtering\'] = TRUE;',"../application/config/config.php");
 		replace_in_file('$config[\'sess_expire_on_close\']	= FALSE;','$config[\'sess_expire_on_close\']	= True;',"../application/config/config.php");
 		replace_in_file('$config[\'sess_use_database\']	= FALSE;','$config[\'sess_use_database\']	= TRUE;',"../application/config/config.php");
 		replace_in_file("<?php","<?php ini_set('date.timezone', 'Asia/tehran');","../index.php");
