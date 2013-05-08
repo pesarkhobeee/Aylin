@@ -494,7 +494,10 @@ function visitor_show($date=Null)
 			list($gyear,$gmonth,$gday)=preg_split('/-/',$gdate[0]);
 			list($jyear,$jmonth,$jday) = $CI->jalalicalendar->gregorian_to_jalali($gyear,$gmonth,$gday);
 			$jdate=$jyear."-".$jmonth."-".$jday;  
-			return $gdate[1]." ".$jdate;
+			if(!empty($gdate[1])) 
+    			return $gdate[1]." ".$jdate;
+            else
+                return $jdate;
 		}
 	}
 
