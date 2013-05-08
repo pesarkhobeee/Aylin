@@ -92,6 +92,47 @@ class users extends CI_Controller {
 		$this->load->view('/users/customer_detail',$data);
 		$this->load->view('admin_them/footer');
 	}
+	
+	function customer_detail_update($id=null,$msg=null){
+		
+		if($id==null)
+			return true;
+			
+		if($msg!=null)
+			if($msg=="ok")
+				$data["msg"] = "<div style='direction:rtl;text-align:right;' class='fade in alert alert-success'>
+        <a data-dismiss='alert' class='close'>×</a>
+			بروزرسانی انجام شد
+        </div>";
+			else
+				$data["msg"] = "<div style='direction:rtl;text-align:right;' class='fade in alert alert-error'>
+        <a data-dismiss='alert' class='close'>×</a>
+         متاسفانه در روند بروزرسانی مشکلی پیش آمد</div>";
+			
+		$this->db->where("cd_users_id",$id);
+		$query = $this->db->get("customer_detail");
+		$data["row"] = $query->row();
+		if($query->num_rows()==1)
+		{
+			$this->load->view('admin_them/header');
+			$this->load->view('/users/update_user_detail',$data);
+			$this->load->view('admin_them/footer');
+		}
+		
+		
+	}
+	
+	function customer_detail_update_finish()
+	{
+		$this->db->where('cd_users_id', $_POST["cd_users_id"]);
+		if($this->db->update('customer_detail', $_POST))
+		{
+			 redirect('/users/customer_detail_update/'.$_POST["cd_users_id"]."/ok", 'refresh');
+		}else{
+			 redirect('/users/customer_detail_update/'.$_POST["cd_users_id"]."/no", 'refresh');
+		}
+			
+	}
 
 	function show_users(){
 		
