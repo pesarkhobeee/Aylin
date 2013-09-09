@@ -141,17 +141,17 @@
 			<tr>
 				<td><input type="checkbox" name="codeigniter" value="codeigniter"  checked="checked"/></td>
 				<td><img src="assets/code_igniter.jpeg" /></td>
-				<td>CodeIgniter 2.1.3</td>
+				<td>CodeIgniter_2.1.4</td>
 			</tr>
 			<tr>
 				<td><input type="checkbox" name="grocery" value="grocery" checked="checked" /></td>
 				<td><img src="assets/grocery.png" /></td>	
-				<td>Grocery CRUD 1.3.3</td>
+				<td>Grocery CRUD 1.4.1</td>
 			</tr>
 			<tr>
 				<td><input type="checkbox" name="bootstrap" value="bootstrap" checked="checked" /></td>
 				<td><img src="assets/bootstrap.jpeg" /></td>	
-				<td>Bootstrap 2.2.1</td>
+				<td>Bootstrap 2.3.2</td>
 			</tr>
 			<tr>
 				<td><input type="checkbox" name="aylin" value="aylin" checked="checked" /></td>

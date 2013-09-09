@@ -2,9 +2,9 @@
 	include_once("functions.php");
 
 	if(isset($_POST["codeigniter"])){
-		extractor("./core/CodeIgniter_2.1.3.zip","../");	
-		smartCopy("../CodeIgniter_2.1.3/","..");
-		rrmdir("../CodeIgniter_2.1.3");
+		extractor("./core/CodeIgniter_2.1.4.zip","../");	
+		smartCopy("../CodeIgniter_2.1.4/","..");
+		rrmdir("../CodeIgniter_2.1.4");
 		replace_in_file("['helper'] = array();","['helper'] = array('url');","../application/config/autoload.php");
 		replace_in_file("['base_url']	= ''","['base_url']	= '".$_POST["base_url"]."'","../application/config/config.php");
 		replace_in_file("['encryption_key'] = '';","['encryption_key'] = '".GenerateKey()."';","../application/config/config.php");
@@ -18,7 +18,9 @@
 	}
 
 	if(isset($_POST["grocery"])){
-		extractor("./core/grocery_CRUD-1.3.3.zip","../");
+		extractor("./core/grocery-crud-1.4.1.zip","../");
+		smartCopy("../grocery-crud-1.4.1/","..");
+		rrmdir("../grocery-crud-1.4.1");
 		replace_in_file('$config[\'grocery_crud_default_language\']	= \'english\';','$config[\'grocery_crud_default_language\']	= \'persian\';',"../application/config/grocery_crud.php");
 	}
 
