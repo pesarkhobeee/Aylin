@@ -141,7 +141,7 @@
 			<tr>
 				<td><input type="checkbox" name="codeigniter" value="codeigniter"  checked="checked"/></td>
 				<td><img src="assets/code_igniter.jpeg" /></td>
-				<td>CodeIgniter_2.1.4</td>
+				<td>CodeIgniter_2.2.0</td>
 			</tr>
 			<tr>
 				<td><input type="checkbox" name="grocery" value="grocery" checked="checked" /></td>

@@ -2,9 +2,9 @@
 	include_once("functions.php");
 
 	if(isset($_POST["codeigniter"])){
-		extractor("./core/CodeIgniter_2.1.4.zip","../");	
-		smartCopy("../CodeIgniter_2.1.4/","..");
-		rrmdir("../CodeIgniter_2.1.4");
+		extractor("./core/CodeIgniter_2.2.0.zip","../");	
+		smartCopy("../CodeIgniter_2.2.0/","..");
+		rrmdir("../CodeIgniter_2.2.0");
 		replace_in_file("['helper'] = array();","['helper'] = array('url');","../application/config/autoload.php");
 		replace_in_file("['base_url']	= ''","['base_url']	= '".$_POST["base_url"]."'","../application/config/config.php");
 		replace_in_file("['encryption_key'] = '';","['encryption_key'] = '".GenerateKey()."';","../application/config/config.php");
