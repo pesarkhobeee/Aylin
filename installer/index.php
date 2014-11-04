@@ -202,7 +202,11 @@
 				<tr>
 					<td><input type="checkbox" name="tickets" value="tickets"  checked="checked"/></td>
 					<td>سیستم پشتیبانی کاربران</td>
-				</tr>				
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="forms" value="forms"  checked="checked"/></td>
+					<td>سیستم فرم ساز</td>
+				</tr>								
 			</table>
 		</fieldset>
 		
