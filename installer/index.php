@@ -199,6 +199,10 @@
 					<td><input type="checkbox" name="gallery" value="gallery"  checked="checked"/></td>
 					<td>گالری تصاویر</td>
 				</tr>
+				<tr>
+					<td><input type="checkbox" name="tickets" value="tickets"  checked="checked"/></td>
+					<td>سیستم پشتیبانی کاربران</td>
+				</tr>				
 			</table>
 		</fieldset>
 		

@@ -124,6 +124,12 @@
 		import_db_file("../application/db.sql");
 		import_db_file("../application/data.sql");
 	}
+	
+	if(isset($_POST["tickets"])){
+		extractor("./core/sub_systems/tickets.zip","../application/");
+		import_db_file("../application/db.sql");
+		import_db_file("../application/data.sql");
+	}	
 	?>
 	
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
